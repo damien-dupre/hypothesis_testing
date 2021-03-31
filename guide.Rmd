@@ -148,7 +148,8 @@ The basic structure of a statistical model is:
 
 $$Outcome = Model + Error$$
 
-where the $Model$ is a series of predictors that are expressed in hypotheses related to the same outcome.
+where the $Model$ is a series of predictors that are expressed in hypotheses related to the same outcome:
+
 - Main effect hypotheses are indicated with the predictor name only
 - Interaction effect hypotheses are indicated with all predictor names separated by $*$
 
