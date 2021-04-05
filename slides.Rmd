@@ -37,6 +37,28 @@ library(tidyverse)
 library(nomnoml)
 library(DiagrammeR)
 library(fontawesome)
+library(plotly)
+
+# functions --------------------------------------------------------------------
+rtruncnorm <- function(N, mean = 0, sd = 1, a = -Inf, b = Inf) {
+  U <- runif(N, pnorm(a, mean, sd), pnorm(b, mean, sd))
+  qnorm(U, mean, sd) 
+}
+
+# data -------------------------------------------------------------------------
+df_data <- 
+  tibble(
+    predictor = rtruncnorm(100, mean = 5, sd = 2.5, a = 0, b = 10),
+    outcome = 2 + 0.9 * predictor + rnorm(100, mean = 0, sd = 1)
+  )
+
+df_lm <- lm(outcome ~ predictor, df_data)
+
+df_data <- df_data %>% 
+  mutate(
+    b0 = rnorm(100, df_lm$coefficients[["(Intercept)"]], 4),
+    b1 = rnorm(100, df_lm$coefficients[["predictor"]], 1)
+  )
 ```
 
 # Essential Concepts to Master
@@ -205,6 +227,129 @@ $$Outcome = \beta_0 + \beta_1 Pred1 + \beta_2 Pred2 + \beta_3 Pred1 * Pred2 + Er
 Note: $\beta_0$ is the estimate related to the intercept. It is always included, always tested but has no interest in the analysis
 
 ---
+class: inverse
+
+# The Estimate $\beta$
+
+.pull-left[
+To find the **Estimate** for the intercept and each predictor, all possible lines are calculated and the one with the lowest amount of error is selected
+]
+
+.pull-right[
+```{r fig.width=5, fig.height=3}
+ggplot(df_data, aes(predictor, outcome)) + 
+  geom_abline(aes(intercept = b0, slope = b1), alpha = 1/4) +
+  geom_point() +
+  scale_x_continuous(breaks = c(0, seq(0:10)), limits = c(0, 10)) +
+  scale_y_continuous(limits = c(0, 10)) +
+  theme(
+    # axis.text.x = element_blank(), 
+    # axis.text.y = element_blank(),
+    text = element_text(size = 20)
+  )
+```
+]
+
+.pull-left[
+The **Estimate of the Intercept** corresponds to the value of the Outcome when the Predictor is $0$.
+
+The **Estimate of each Predictor** corresponds to how many units the Outcome increases when the Predictor increase by $1$ unit (slope of the line).
+
+]
+
+.pull-right[
+```{r fig.width=5, fig.height=3}
+ggplot(df_data, aes(predictor, outcome)) +
+  geom_point(color = "gray", size = 2, alpha = 0.5) +
+  geom_smooth(method = "lm", fullrange = TRUE, se = FALSE) +
+  geom_hline(yintercept = df_lm$coefficients[["(Intercept)"]], color = 'black', size = 0.5, linetype = 'dotted') +
+  annotate("text", x = 8, y = df_lm$coefficients[["(Intercept)"]]+0.5, label = "Intercept \u03b2") +
+  annotate('segment', x = 1, xend = 2, y = df_lm$coefficients[["(Intercept)"]] + 1*df_lm$coefficients[["predictor"]], yend = df_lm$coefficients[["(Intercept)"]] + 1*df_lm$coefficients[["predictor"]], color = 'red') +
+  annotate('segment', x = 2, xend = 2, y = df_lm$coefficients[["(Intercept)"]] + 1*df_lm$coefficients[["predictor"]], yend = df_lm$coefficients[["(Intercept)"]] + 2*df_lm$coefficients[["predictor"]], color = 'red') +
+  annotate("text", x = 3, y = df_lm$coefficients[["(Intercept)"]] + 1.5*df_lm$coefficients[["predictor"]], label = "Predictor \u03b2") +
+  scale_x_continuous(breaks = c(0, seq(0:10)), limits = c(0, 10)) +
+  scale_y_continuous(limits = c(0, 10)) +
+  theme_bw() +
+  theme(
+    text = element_text(size = 20)
+  )
+```
+
+]
+
+---
+
+class: inverse
+
+# The Standardized Estimate
+
+.pull-left[
+Estimates can't be compared because they usually have different units. However, once standardized ([centred around $0$ with a covariance of $1$](https://en.wikipedia.org/wiki/Standardized_coefficient)), these standardized estimates can be compared. 
+
+**Standardized Estimates also corresponds to the correlation** between the Outcome and the Predictor (i.e., ranges from $\text{-}1$ to $1$ with $0$ being no relationship).
+
+Testing $H_a\,vs\,H_0$ is the exact same thing when using the obtained Estimate or the Standardized Estimate.
+
+However, having a high or low (Standardized) Estimate doesn't mean significant effect.
+]
+
+.pull-right[
+
+```{r fig.width=5.5, fig.height=7.4}
+df_data <- 
+  tibble(
+    predictor = rtruncnorm(100, mean = 0, sd = 2.5, a = -5, b = 5),
+    outcome = 0.9 * predictor + rnorm(100, mean = 0, sd = 1)
+  ) %>% 
+  mutate(
+    b1 = 0.9
+  )
+
+df_data_null <- df_data %>% 
+  mutate(
+    outcome = rnorm(100, mean = 0, sd = 1),
+    b1 = 0
+  )
+
+df_data_inverse <- df_data %>% 
+  mutate(
+    outcome = (max(outcome)+min(outcome))-outcome,
+    b1 = -round(df_lm$coefficients[["predictor"]], 1)
+  )
+
+df_data_almost <- df_data %>% 
+  mutate(
+    outcome = 0.5 * predictor + rnorm(100, mean = 0, sd = 1),
+    b1 = 0.5
+  )
+
+df_data_almost_inverse <- df_data_almost %>% 
+  mutate(
+    outcome = (max(outcome)+min(outcome))-outcome,
+    b1 = -0.5
+  )
+
+df_data %>% 
+  bind_rows(
+    df_data_null, 
+    df_data_inverse, 
+    df_data_almost, 
+    df_data_almost_inverse
+  ) %>%
+  filter(outcome < 10) %>%
+  plot_ly(x = ~predictor, y = ~outcome) %>%
+  add_markers(color = ~b1, frame = ~b1, ids = ~predictor) %>%
+  hide_colorbar() %>%
+  animation_opts(frame = 1000, easing = "linear") %>%
+  animation_slider(
+    currentvalue = list(prefix = "Std. Estimate ", font = list(color="red"))
+  )
+
+```
+
+]
+
+---
 
 # Evaluation of the Significance
 
@@ -303,6 +448,24 @@ Note: In Jamovi ...
 - The outcome is called Dependent Variable
 - A continuous predictor is a covariate
 - A categorical predictor is a factor
+
+---
+
+# Good Practices with Hypothesis Testing
+
+- All hypotheses using the **same Outcome variable have to be tested in the same model** and not separately.
+
+- Even if available, no need to use t-tests or ANOVA separate modules because the **Linear Regression can test all types of hypothesis**.
+
+- **Do not use a correlation matrix to test your hypotheses**, they are exculively dedicated to evaluate correlations between predictors.
+
+- A $p$-value never equals $0$, **round to $p < .001$ if lower than $0.001$**.
+
+- Despite never shown in academic papers, the **4 conditions of applications for Linear Model should always be checked**:
+  - Linearity of the relationship,
+  - Normal distribution of the residuals,
+  - Homogeneity of the residuals,
+  - Independance of observations.
 
 ---
 class: title-slide, middle
