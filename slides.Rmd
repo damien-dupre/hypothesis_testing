@@ -547,6 +547,14 @@ From here...
 include_graphics("https://pbs.twimg.com/media/EhjV0v-XgAEh2pk?format=jpg&name=large")
 ```
 
+---
+class: inverse, mline, center, middle
+
+# 6. Live Demo
+
+---
+
+# Replication of Lianga et al. (2018)
 
 ---
 class: inverse, mline, left, middle
