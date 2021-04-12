@@ -2,7 +2,9 @@
 title: "Retaliation on a voodoo doll symbolizing an abusive supervisor restores justice"
 subtitle: "A model paper based on simulation data to explain the principle of academic writing"
 author: "Damien Dupré"
-output: pdf_document
+output:
+  pdf_document:
+    keep_tex: true
 ---
 
 ```{r setup, include=FALSE}
@@ -29,7 +31,7 @@ df <- read_csv(here("doc/voodoo_data.csv"))
 
 ## Abstract
 
-The present paper draws from the paper entitled "Righting a wrong: Retaliation on a voodoo doll symbolizing an abusive supervisor restores justice" (Liang et al., 2018). This academic article was published in the journal "The Leadership Quarterly" and has been awarded with the prestigious IG Nobel Price (section Business Studies). The paper looked at how subordinate retaliation moderates the relationship between abusive supervision and subordinate injustice perception. By testing the hypotheses formulated by its authors on simulated data, the present paper will describe each step of the academic writing.
+The present paper draws from the paper entitled "Righting a wrong: Retaliation on a voodoo doll symbolizing an abusive supervisor restores justice" (Liang et al., 2018). This academic article was published in the journal "The Leadership Quarterly" and has been awarded with the prestigious IG Nobel Price (section Business Studies). The paper looked at how subordinate retaliation moderates the relationship between abusive supervision and subordinate injustice perception. More precisely, the authors asked their participants to imagine an abusive or non-abusive supervision context and they measured how much using a virtual voodoo doll, representing the supervisor, would restore people's sense of justice. By testing the hypotheses formulated by its authors on simulated data, the present paper will describe each step of the academic writing.
 
 # Introduction
 
@@ -71,9 +73,7 @@ In general, the participant section indicates the average age with standard devi
 
 To manipulate abusive supervision, Liang et al. (2018) have asked their participants to imagine themselves in a condition of abusive supervision or non-abusive supervision. Consequently, this variable is categorical with two categories: abusive (N = 1015) and non-abusive (N = 985).
 
-The method that Liang et al. (2018) used to measure subordinate retaliation is original and novel. They asked some of their participants to use a virtual voodoo doll as if they were the subordinate imagining that the doll was the abusive supervisor.
-
-Liang et al. (2018) examined whether participants used or not the virtual voodoo doll. However, for the purposes of this paper, it is considered how long participants are using the virtual voodoo doll (measured in seconds). As a result the variable is continuous which explains how Hypothesis 2 is formulated.
+The method that Liang et al. (2018) used to measure subordinate retaliation is original and novel. They asked some of their participants to use a virtual voodoo doll as if they were the subordinate imagining that the doll was the abusive supervisor. Liang et al. (2018) examined whether participants used or not the virtual voodoo doll. However, for the purposes of this paper, it is considered how long participants are using the virtual voodoo doll (measured in seconds). As a result the variable is continuous which explains how Hypothesis 2 is formulated.
 
 Liang et al. (2018) used a word completion task to measure subordinate injustice perception. In this task, five words have missing letters, and have to be completed so that they become either a neutral word or a negative word. The ratio of negative words used among the five words is supposed to reveal the injustice perception still felt by the subordinate. The measurement of subordinate injustice perception is simulated to have the same shape as the data obtained from this task. 
 
