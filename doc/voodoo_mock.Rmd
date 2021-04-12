@@ -210,7 +210,7 @@ function figure(url, targetElement) {
 <p id="data_analysis2"></p>
 
 <button onclick="figure(
-  'http://img.tesco.com/Groceries/pi/118/5000175411118/IDShot_90x90.jpg',
+  'https://raw.githubusercontent.com/damien-dupre/hypothesis_testing/master/doc/figure_1.png',
   'fig1'
 )">
 Figure 1. Representation of the model testing the three hypotheses (AS = abusive supervision; IP = injustice perception; SR = subordinate retaliation)
@@ -260,7 +260,7 @@ Figure 1. Representation of the model testing the three hypotheses (AS = abusive
 <p id="results3"></p>
 
 <button onclick="figure(
-  'http://img.tesco.com/Groceries/pi/118/5000175411118/IDShot_90x90.jpg',
+  'https://raw.githubusercontent.com/damien-dupre/hypothesis_testing/master/doc/figure_2.png',
   'fig2'
 )">
 Figure 2. The slope of the relationship between subordinate retaliation and injustice perception is not different for abusive supervision and non-abusive supervision contexts (AS = abusive supervision; IP = injustice perception; SR = subordinate retaliation)
