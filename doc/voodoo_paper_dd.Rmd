@@ -126,7 +126,7 @@ ggplot(df, aes(SR, IP, color = AS)) +
   geom_smooth(formula = 'y ~ x', method = "lm", se = FALSE, na.rm = TRUE) +
   theme_bw()
 
-ggsave("doc/figure_2.png", width = 15, height = 6)
+ggsave("doc/figure_2.png", width = 8, height = 3)
 ```
 
 # Discussion and Conclusion

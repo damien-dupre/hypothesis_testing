@@ -17,6 +17,10 @@ h1,h2,h3,h4,h5,h6{
   font-family: Times;
   text-transform: none;
 }
+
+img.image-thumb {
+    max-width: 500px;
+}
 ```
 
 ```{r setup, include=FALSE}
