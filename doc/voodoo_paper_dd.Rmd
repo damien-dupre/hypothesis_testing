@@ -29,7 +29,7 @@ df <- read_csv(here("doc/voodoo_data.csv"))
 
 ## Abstract
 
-The present paper draws from the paper entitled "Righting a wrong: Retaliation on a voodoo doll symbolizing an abusive supervisor restores justice" (Liang et al., 2018). This academic article was published in the journal "The Leadership Quarterly" and has been awarded with the prestigious IG Noble Price (section Business Studies). By testing the hypotheses formulated by its authors on simulated data, the present paper will describe each step of the academic writing.
+The present paper draws from the paper entitled "Righting a wrong: Retaliation on a voodoo doll symbolizing an abusive supervisor restores justice" (Liang et al., 2018). This academic article was published in the journal "The Leadership Quarterly" and has been awarded with the prestigious IG Nobel Price (section Business Studies). The paper looked at how subordinate retaliation moderates the relationship between abusive supervision and subordinate injustice perception. By testing the hypotheses formulated by its authors on simulated data, the present paper will describe each step of the academic writing.
 
 # Introduction
 
@@ -47,7 +47,7 @@ The goal of the present paper is to describe the process of academic writing and
 
 ## Subordinate Retaliation
 
-Sections in the literature review should present the state of the art of previous scientific research investigating these variables and their relationship. It is strongly suggested to use theories that have already been published and present how they are relevant to you. You can also use references from previous research to give some context on the evidence that have been found. These scientific evidences should support the formulation of your hypotheses.
+Sections in the literature review should present the state of the art of previous scientific research investigating these variables and their relationship. It is strongly recommended to use theories that have already been published and to describe how they are relevant to you. You can also use references from previous research to give some context to the evidence that has been found. This scientific evidence should support the formulation of your hypotheses.
 
 ## Injustice Perception
 
@@ -125,8 +125,6 @@ To interpret the statistics behind hypothesis testing, only the p-value is neces
 ggplot(df, aes(SR, IP, color = AS)) +
   geom_smooth(formula = 'y ~ x', method = "lm", se = FALSE, na.rm = TRUE) +
   theme_bw()
-
-ggsave("doc/figure_2.png", width = 8, height = 3)
 ```
 
 # Discussion and Conclusion
