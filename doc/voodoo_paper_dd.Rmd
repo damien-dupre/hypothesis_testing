@@ -2,7 +2,7 @@
 title: "Retaliation on a voodoo doll symbolizing an abusive supervisor restores justice"
 subtitle: "A replication based on simulation data to explain the principle of academic writing"
 author: "Damien Dupré"
-output: pdf_document
+output: word_document
 ---
 
 ```{r setup, include=FALSE}
