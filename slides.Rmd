@@ -61,6 +61,21 @@ df_data <- df_data %>%
   )
 ```
 
+# Academic Reports
+
+Science aims to understand phenomena by identifying the variables that influence them.
+
+An academic paper or report is a piece of evidence explaining a phenomenon. 
+
+**By describing the steps to that have led to this explanation (i.e., hypothetico-deductive approach), an academic paper or report ensures the robustness of the evidence found.**
+
+```{r out.width='70%'}
+include_graphics("https://www.azquotes.com/picture-quotes/quote-science-may-be-described-as-the-art-of-systematic-over-simplification-karl-popper-23-44-80.jpg")
+```
+
+
+---
+
 # Essential Concepts to Master
 
 In academic research paper all sections are linked:
