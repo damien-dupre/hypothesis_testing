@@ -316,7 +316,7 @@ include_graphics("https://pbs.twimg.com/media/EhjV0v-XgAEh2pk?format=jpg&name=la
 
 This guide is the shortest guide I was able to write to give an outline of hypothesis testing for academic research using Jamovi.
 
-A lot more can be said, but I strongly recommand to have a look at ["Learning Stats with Jamovi"](https://www.learnstatswithjamovi.com/) by Navarro and Foxcroft (2019) if you want to know more
+A lot more can be said, but I strongly recommend to have a look at ["Learning Stats with Jamovi"](https://www.learnstatswithjamovi.com/) by Navarro and Foxcroft (2019) if you want to know more
 
 <img class="circle" src="https://github.com/damien-dupre.png" width="150px"/>
 

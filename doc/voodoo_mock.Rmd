@@ -191,7 +191,7 @@ Damien Dupré, DCU Business School
 <p id="material3"></p>
 
 <button onclick="typeWriter(
-  'As indicated previous, the data are simulated.', 
+  'As indicated previously, the data are simulated.', 
   'procedure', 
   5
   )">

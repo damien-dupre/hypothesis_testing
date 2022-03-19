@@ -73,7 +73,6 @@ An academic paper or report is a piece of evidence explaining a phenomenon.
 include_graphics("https://www.azquotes.com/picture-quotes/quote-science-may-be-described-as-the-art-of-systematic-over-simplification-karl-popper-23-44-80.jpg")
 ```
 
-
 ---
 
 # Essential Concepts to Master
@@ -235,16 +234,16 @@ $$Outcome = Pred1 + Pred2 + Pred1 * Pred2 + Error$$
 
 --
 
-To evaluate their relationship with the outcome, each effect hypothesis is related with a coefficient called **Estimate** and represented with $\beta$ as follow:
+To evaluate their relationship with the outcome, each effect hypothesis is related with a coefficient called **Estimate** and represented with $b$ as follow:
 
-$$Outcome = \beta_0 + \beta_1 Pred1 + \beta_2 Pred2 + \beta_3 Pred1 * Pred2 + Error$$
+$$Outcome = b_0 + b_1 Pred1 + b_2 Pred2 + b_3 Pred1 * Pred2 + Error$$
 
-Note: $\beta_0$ is the estimate related to the intercept. It is always included, always tested but has no interest in the analysis
+Note: $b_0$ is the estimate related to the intercept. It is always included, always tested but has no interest in the analysis
 
 ---
 class: inverse
 
-# The Estimate $\beta$
+# The Estimate $b$
 
 .pull-left[
 To find the **Estimate** for the intercept and each predictor, all possible lines are calculated and the one with the lowest amount of error is selected
@@ -368,13 +367,13 @@ df_data %>%
 
 # Evaluation of the Significance
 
-Testing for the significance of the effect means evaluating if this estimate $\beta$ value is significantly **different, higher or lower than 0** as hypothesised in $H_a$:
+Testing for the significance of the effect means evaluating if this estimate $b$ value is significantly **different, higher or lower than 0** as hypothesised in $H_a$:
 
-- $\beta \neq 0$ means our hypothesis doesn't precise the direction of the change, just that there is a change
-- $\beta > 0$ means our hypothesis indicates that the relationship increases or a group is higher than another group
-- $\beta < 0$ means our hypothesis indicates that the relationship decreases or a group is lower than another group
+- $b \neq 0$ means our hypothesis doesn't precise the direction of the change, just that there is a change
+- $b > 0$ means our hypothesis indicates that the relationship increases or a group is higher than another group
+- $b < 0$ means our hypothesis indicates that the relationship decreases or a group is lower than another group
 
-Note: $H_0$ will always predict that $\beta = 0$
+Note: $H_0$ will always predict that $b = 0$
 
 --
 
