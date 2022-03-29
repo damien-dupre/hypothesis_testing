@@ -62,6 +62,22 @@ df_data <- df_data %>%
     b0 = rnorm(100, df_lm$coefficients[["(Intercept)"]], 4),
     b1 = rnorm(100, df_lm$coefficients[["predictor"]], 1)
   )
+
+summary_df <- df_data |> 
+  select(predictor, outcome) |> 
+  pivot_longer(everything(), names_to = "variables", values_to = "values") |> 
+  group_by(variables) |> 
+  summarise(
+    m_var = mean(values),
+    sd_var = sd(values)
+  ) |> 
+  mutate(across(where(is.numeric), round, 1))
+
+df_data_std <- df_data |> 
+  mutate(
+    outcome_std = (outcome - summary_df$m_var[1])/summary_df$sd_var[1],
+    predictor_std = (predictor - summary_df$m_var[2])/summary_df$sd_var[2]
+  )
 ```
 
 # Structure of a Statistical Analysis
@@ -326,6 +342,79 @@ The __medmod__ module will allow you to easily test Moderation and Mediation mod
 ```{r out.width='40%'}
 include_graphics("https://i0.wp.com/www.rensvandeschoot.com/wp-content/uploads/html_import/f172104e6a0f45c4be2f299d95558f6a.jpg?w=600&ssl=1")
 ```
+
+---
+class: inverse
+
+# *medmod*'s $Z$-test
+
+To perform hypothesis testing, the *medmod* module uses $Z$-test
+
+--
+
+$Z$-test is a $t$-test ran on __standardized__ variables
+
+--
+
+A __standardized__ variable (also called "centred and scaled") is a variable which mean is 0 and standard deviation is 1. 
+
+--
+
+To standardize a variable variable, __every observation is subtracted to the mean and divided by its standard deviation__:
+
+$$std_i = \frac{(x_i - \bar{x})}{\sigma}$$
+
+--
+
+It has 3 massive advantages:
+
+1. It removes the effect of the intercept $b_0$
+2. Even if they have different units of measures, the effect of the Predictor and the Moderator/Mediator can be compared
+3. The estimate provided is the value of the correlation between the Predictor/Moderator/Mediator and the Outcome
+
+---
+class: inverse
+
+# *medmod*'s $Z$-test
+
+.pull-left[
+.center[Original Values]
+```{r}
+ggplot(df_data_std, aes(predictor, outcome))+
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(
+    x = "Predictor's Values (original)",
+    y = "Outcome's Values (original)"
+  ) +
+  theme_bw()
+```
+
+
+Ouctome: Avg. = `r summary_df$m_var[1]`; Std. Dev. = `r  summary_df$sd_var[1]`
+
+Predictor: Avg. = `r summary_df$m_var[2]`; Std. Dev. = `r summary_df$sd_var[2]`
+
+]
+
+.pull-right[
+.center[Standardized Values]
+```{r}
+ggplot(df_data_std, aes(predictor_std, outcome_std))+
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(
+    x = "Predictor's Values (standardized)",
+    y = "Outcome's Values (standardized)"
+  ) +
+  theme_bw()
+```
+
+Ouctome: Avg. = 0; Std. Dev. = 1
+
+Predictor: Avg. = 0; Std. Dev. = 1
+
+]
 
 ---
 

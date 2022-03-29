@@ -249,6 +249,61 @@ The __medmod__ module will allow you to easily test Moderation and Mediation mod
 &lt;img src="https://i0.wp.com/www.rensvandeschoot.com/wp-content/uploads/html_import/f172104e6a0f45c4be2f299d95558f6a.jpg?w=600&amp;ssl=1" width="40%" style="display: block; margin: auto;" /&gt;
 
 ---
+class: inverse
+
+# *medmod*'s `\(Z\)`-test
+
+To perform hypothesis testing, the *medmod* module uses `\(Z\)`-test
+
+--
+
+`\(Z\)`-test is a `\(t\)`-test ran on __standardized__ variables
+
+--
+
+A __standardized__ variable (also called "centred and scaled") is a variable which mean is 0 and standard deviation is 1. 
+
+--
+
+To standardize a variable variable, __every observation is subtracted to the mean and divided by its standard deviation__:
+
+`$$std_i = \frac{(x_i - \bar{x})}{\sigma}$$`
+
+--
+
+It has 3 massive advantages:
+
+1. It removes the effect of the intercept `\(b_0\)`
+2. Even if they have different units of measures, the effect of the Predictor and the Moderator/Mediator can be compared
+3. The estimate provided is the value of the correlation between the Predictor/Moderator/Mediator and the Outcome
+
+---
+class: inverse
+
+# *medmod*'s `\(Z\)`-test
+
+.pull-left[
+.center[Original Values]
+&lt;img src="workshop_medmod_files/figure-html/unnamed-chunk-9-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+
+Ouctome: Avg. = 6.4; Std. Dev. = 2.1
+
+Predictor: Avg. = 5; Std. Dev. = 2.1
+
+]
+
+.pull-right[
+.center[Standardized Values]
+&lt;img src="workshop_medmod_files/figure-html/unnamed-chunk-10-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+Ouctome: Avg. = 0; Std. Dev. = 1
+
+Predictor: Avg. = 0; Std. Dev. = 1
+
+]
+
+---
 
 # Data Example
 
