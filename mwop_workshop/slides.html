@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Hypothesis Testing with Moderation and Mediation Models</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Damien Dupré" />
+    <script src="libs/header-attrs-2.20/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <script src="libs/htmlwidgets-1.6.1/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.9/grViz.js"></script>
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <script src="libs/plotly-binding-4.10.1/plotly.js"></script>
+    <script src="libs/typedarray-0.1/typedarray.min.js"></script>
+    <script src="libs/jquery-3.5.1/jquery.min.js"></script>
+    <link href="libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+    <link href="libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+    <script src="libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Hypothesis Testing with Moderation and Mediation Models
+]
+.subtitle[
+## Guidelines for Successful Statistics with Jamovi
+]
+.author[
+### Damien Dupré
+]
+.date[
+### Dublin City University
+]
+
+---
+
+
+
+
+# A Closer Look at Academic Papers
+
+Conducting a research is similar to writing an academic paper. Every sections are essential and have their own purpose:
+
+--
+
+1. **The Introduction** introduce your research question (which can be your title too) and includes the variables that you will investigate.
+
+--
+
+2. **The Literature Review** indicates how the variables are related (model) and finishes with your hypotheses. The model includes all hypotheses that will be tested and only the tested hypotheses.
+
+--
+
+3. **The Method** presents 1/ the variables and 2/ the mathematical equation that summarises your model and which includes the test of all hypotheses.
+
+--
+
+4. **The Results** describes the numeric outputs of the tests for each hypothesis.
+
+--
+
+5. **The Discussion and Conclusion** are interpretations of these results. Strengths and weaknesses of the study are also presented.
+
+---
+class: inverse, mline, center, middle
+
+# 1. Introduction: Declare your Variables
+
+---
+
+# Academic Papers' Introduction
+
+An introduction is a section **presenting your variables and why you investigate them**.
+
+There is little reference to previous academic research, just a description of actual facts.
+
+It should end with your **Research Question**, a question that includes all the main variables investigated which wonders about a potential relationship between them.
+
+--
+
+For example:
+- "What is the relationship between Job Satisfaction, Salary and Gender?"
+- "How does sales experience influence the performance of sales managers and sales representatives?"
+
+&lt;img src="https://memegenerator.net/img/instances/65219961/there-will-come-a-day-i-easily-write-an-introduction-to-a-paper-but-it-is-not-this-day.jpg" width="25%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# What is a Variable?
+
+A variable itself is a subtle concept, but basically it comes down to finding some way of assigning a *value* (numbers or characters) to **labels**.
+
+--
+
+In these examples, the **bold part is "label"** and the *italicised part is "the value of the variable"*:
+
+- My **height** is *183 cm*
+- This morning, I had a *large* **coffee**
+- My **gender** is *male*
+
+Each variable has a **Role** and a **Type**, it is essential to learn how to identify them.
+
+---
+class: title-slide, middle
+
+## Type of Variables
+
+---
+
+# Type of Variables
+
+Variables can have different types:
+
+- **Categorical**: If the variable's possibilities are words or sentences (character string)
+
+  - if the possibilities cannot be ordered: Categorical Nominal (*e.g.*, `\(gender\)` male, female, other)
+  
+  - if the possibilities can be ordered: Categorical Ordinal (*e.g.*, `\(size\)` S, M, L)
+  
+- **Continuous**: If the variable's possibilities are numbers (*e.g.*, `\(age\)`, `\(temperature\)`, ...) 
+
+--
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**: Variables can be converted to either Categorical and Continuous but it is always better to keep them in their correct scale.
+
+&lt;img src="img/jamovi_icons.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+---
+class: title-slide, middle
+
+## Status of Variables
+
+---
+
+# Status of Variables
+
+Variables can either be:
+
+- **Observed variables**: They are directly measured in your survey (e.g., gender, age, scale items)
+
+or
+
+- **Latent variables**: They are calculated from multiple observed variables (generally scale items) in order to approximate a theoretical construct.
+
+--
+
+Example of a scale to measure the **"Perceived Ease-of-use" of MS EXCEL** in 4 items were measured from 1 "totally disagree" to 7 "totally agree":
+
+.pull-left[
+- **q1.** I think learning MS EXCEL is easy
+- **q2.** Understanding MS EXCEL is easy
+- **q3.** I am good at using MS EXCEL
+- **q4.** I think using MS EXCEL is easy
+]
+
+.pull-right[
+<div id="htmlwidget-9eceb20dc2a931752ae4" style="width:504px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-9eceb20dc2a931752ae4">{"x":{"diagram":"\ndigraph rmarkdown {\n  graph [rankdir = RL]\n  \n  node [shape = oval]\n  \"Perceived Ease-of-use\n  of MS EXCEL\"\n  \n  node [shape = box]\n  q1; q2; q3; q4\n  \n  \"Perceived Ease-of-use\n  of MS EXCEL\"-> {q1 q2 q3 q4}   \n\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+
+# Focus on Psychometric Scales
+
+**A psychometric scale is a series of questions (items) used to measure a latent variable**
+
+**A score has to be calculated** from all the items to produce the variable to analyse:
+
+- Average of all items (equal contribution to the latent variable score)
+- Factor analysis (unequal contribution to the latent variable score)
+
+--
+
+**A scale should have been validated** by its academic authors: 
+
+- Don't change the items except when possible
+- Don't change items' range of possibilities
+
+--
+
+To be analysed, **a scale has some requirements**:
+- All the items must have the same range of possibilities/modalities
+- All the items must be analysed in the same direction
+- All the items must correlate together (scale reliability)
+- A unique theoretical construct score has to be calculated from all the items
+
+---
+class: title-slide, middle
+
+## Role of Variables
+
+---
+
+# Predictors, Outcomes and Controls
+
+It's important to keep the two roles "variable doing the explaining" and "variable being explained" distinct.
+
+Let's denote the:
+ - **Outcome**: "variable to be explained" (also called `\(Y\)`, Dependent Variable, or DV)
+ - **Predictor**: "variable doing the explaining" (also called `\(X\)`, Independent Variable, or IV)
+ 
+--
+
+Statistics is only about identifying relationship between Predictor and Outcome variables also called **effect**
+
+&gt; An effect between 2 variables means that the changes in the values of a predictor variable are related to changes in the values of an outcome variable.
+
+--
+
+The only difference for **control variables** is that they are not included in the model or in the hypotheses but they are in the equation.
+
+They are used to remove an irrelevant explanation of the variable changes.
+
+---
+class: inverse, mline, center, middle
+
+# 2. Literature Review: Formulate your Hypotheses
+
+---
+
+# Hypotheses in a Nutshell
+
+**An hypothesis is:**
+1. A prediction supported by theory/literature
+2. An affirmation designed to precisely describe the relationship between variables
+
+&gt; *“Hypothesis statements contain two or more variables that are measurable or potentially measurable and that specify how the variables are related”* (Kerlinger, 1986)
+
+--
+
+**An hypothesis include:**
+
+- One or more Predictor(s) / Independent Variable(s)
+- One Outcome / Dependent Variable (DV)
+- Direction of the outcome if the predictor increases
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**: 
+
+Hypothesis cannot test equality between groups or modalities, they can only test differences or effects
+
+---
+
+# Alternative *vs.* Null Hypotheses
+
+Every hypothesis has to state a difference (between groups or according values) also called `\(H_a\)` (for alternative hypothesis) or `\(H_1\)`
+
+Every alternative hypothesis has a null hypothesis counterpart (no difference between groups or according values) also called `\(H_0\)` (pronounce H naught or H zero)
+
+--
+
+`\(H_a\)` is viewed as a “challenger” hypothesis to the null hypothesis `\(H_0\)`.
+  
+&gt; **Statistics are used to test the probability of obtaining your results in the Null Hypothesis scenario. If this probability is low, then we reject the Null Hypothesis (and consider the Alternative Hypothesis as credible).**
+
+---
+
+# Main Effect Hypothesis
+
+Is the **predicted relationship between one `\(Predictor\)` and one `\(Outcome\)` variable**
+
+The `\(Outcome\)` needs to be Continuous and the `\(Predictor\)` can be either Continuous or Categorical (hypothesis formulation will change with its type)
+
+---
+
+# Main Effect Hypothesis Templates
+
+In the following formulation templates, **replace the variables' name with yours** and *select the direction of the effect expected* ...
+
+- #### Case 1: Predictor is Continuous 
+
+.small[{**outcome**} {*increases/decreases/changes*} when {**predictor**} increases]
+
+&gt; .small[**Job satisfaction** *increases* when **salary** increases]
+
+--
+
+- #### Case 2: Predictor is Categorical (2 Categories)
+
+.small[The {**outcome**} of {**predictor category 1**} is {*higher/lower/different*} than the {**outcome**} of {**predictor category 2**}]
+
+&gt; .small[The **Job satisfaction** of **EU employees** is *higher* than the **job satisfaction** of **Non-EU employees**]
+
+--
+
+- #### Case 3: Predictor is Categorical (3 or more Categories)
+
+.small[The {**outcome**} of at least one of the {**predictor**} is {*higher/lower/different*} than the {**outcome**} of the other {**predictor**}]
+
+&gt; .small[The **Job satisfaction** of at least one of the **company's departments** is *higher* than the **Job satisfaction** of the other **company's departments**]
+
+---
+
+# Main Effect Hypothesis Examples
+
+Variables:
+
+- Outcome = Exam Results (continuous from 0 to 100)
+- Predictor = Sleep Time (continuous from 0h to 24h)
+
+Effect representation:
+
+<div id="htmlwidget-f30d7598595affc4f25a" style="width:504px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-f30d7598595affc4f25a">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n    node [shape = box]\n  \n    \"Sleep Time\" -> \"Exam Results\"\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+Main Effect Hypothesis: 
+
+- `\(H_a\)`: **Exam results** *increase* when students’ **sleep time** increases
+
+---
+
+# Main Effect Hypothesis Examples
+
+Variables:
+- Outcome = Exam Results (continuous from 0 to 100)
+- Predictor = Breakfast (categorical *yes* or *no*)
+
+Effect representation:
+
+<div id="htmlwidget-b85bf888dc62471906a9" style="width:504px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-b85bf888dc62471906a9">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n    node [shape = box]\n    \n    \"Breakfast\" -> \"Exam Results\"\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+Main Effect Hypothesis: 
+
+- `\(H_a\)`: **Exam results** of students **who eat breakfast** will be *higher* than **exam results** of students **who do not eat breakfast** 
+
+---
+
+# Main Effect Hypothesis Examples
+
+Variables:
+- Outcome = Driving Errors (continuous from 0 to Inf.)
+- Predictor = Talking on the Phone while Driving (categorical *yes* or *no*)
+
+Effect representation:
+
+<div id="htmlwidget-88fdd2a34d502a66744b" style="width:504px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-88fdd2a34d502a66744b">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n    node [shape = box]\n    \n    \"Talking on the Phone while Driving\" -> \"Driving Errors\"\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+Main Effect Hypothesis: 
+
+- `\(H_a\)`: **Driving errors** of **motorists who do not talk on the phone while driving** will be *lower* than **driving errors** of **motorists who talk on the phone while driving**
+
+---
+
+# Interaction Effect Hypothesis
+
+**It predicts the influence of a second predictor on the relationship between a first predictor and an outcome variable**
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**:
+
+- The second predictor is also called moderator.
+- The main effect of each predictor must be hypothesised as well
+- The role of first and second predictors can be inverted with the exact same statistical results
+
+.pull-left[
+Effects representation:
+
+<div id="htmlwidget-8e1fe96c0688a849169a" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-8e1fe96c0688a849169a">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Predictor 1\"; \"Predictor 2\"; Outcome\n    node [shape = point, width = 0, height = 0]\n    \"\"\n    \n    \"Predictor 2\" -> \"\"\n    \"Predictor 1\" -> \"\" [arrowhead = none]\n    \"\"-> Outcome\n    \n    subgraph {\n      rank = same; \"Predictor 2\"; \"\";\n    }\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+.pull-right[
+
+Exactly the same results:
+<div id="htmlwidget-bb3486349adfa5d821dc" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-bb3486349adfa5d821dc">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n    node [shape = box]\n\n    \"Predictor 1\" -> Outcome\n    \"Predictor 2\" -> Outcome\n    \"Predictor 1 X Predictor 2\" -> Outcome\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+
+# Interaction Effect Hypothesis
+
+.pull-left[
+Imagine a first effect where Job Satisfaction increases when Salary increases
+
+&lt;img src="slides_files/figure-html/unnamed-chunk-9-1.png" width="360" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+This effect can change according to the values of a second predictor
+
+&lt;img src="slides_files/figure-html/unnamed-chunk-10-1.png" width="360" style="display: block; margin: auto;" /&gt;
+
+]
+
+Here, the effect of **Salary** on **Job Satisfaction** is *higher* for **Irish employees** than it is for **French employees** because their line is steeper.
+
+---
+
+# Interaction Effect Hypothesis Templates
+
+In the following formulation templates, **replace the variable names with yours** and *select the direction of the effect expected* ...
+
+--
+
+- #### Case 1: Predictor 2 is Continuous
+
+.small[The effect of {**predictor 1**} on {**outcome**} is {*higher/lower/different*} when {**predictor 2**} increases]
+
+--
+
+- #### Case 2: Predictor 2 is Categorical (2 Categories)
+
+.small[The effect of {**predictor 1**} on {**outcome**} is {*higher/lower/different*} for {**predictor 2 category 1**} than for {***predictor 2 category 2**}]
+
+--
+
+- #### Case 3: Predictor 2 is Categorical (3 or more Categories)
+
+.small[The effect of {**predictor 1**} on {**outcome**} is {*higher/lower/different*} for at least one of {**predictor 2**}]
+
+--
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**:
+
+1. An interaction effect hypothesis is also called moderation effect
+2. By default, an interaction effect involves the test of the main effect hypotheses of all Predictors involved
+3. Predictor 1 and 2 are commutable (can be inverted and produce the same hypothesis)
+
+---
+
+# Interaction Effect Hypothesis Examples
+
+Variables:
+
+- Outcome = Exam Results (continuous from 0 to 100)
+- Predictor 1 = Sleep Deprivation (categorical low, medium, high)
+- Predictor 2 = Gender (categorical male vs. female)
+
+Effects representation:
+
+<div id="htmlwidget-44474b3e8cd160f85a98" style="width:504px;height:100px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-44474b3e8cd160f85a98">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Sleep Deprivation\"; \"Exam Results\"; Gender\n    node [shape = point, width = 0, height = 0]\n    \"\"\n    \n    Gender -> \"\"\n    \"Sleep Deprivation\" -> \"\" [arrowhead = none]\n    \"\"-> \"Exam Results\"\n    \n    subgraph {\n      rank = same; Gender; \"\";\n    }\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+Interaction Effect Hypothesis: 
+- `\(H_a\)`: The effect of **sleep deprivation** on **exam results** is *higher* for **Males students** than it is for **Females students**
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**: The main effect hypotheses of the two predictors also have to be formulated
+
+---
+
+# Interaction Effect Hypothesis Examples
+
+Variables:
+- Outcome = Road Accidents (continuous from 0 to Inf.)
+- Predictor 1 = Alcohol Consumption (continuous from 0 to Inf.)
+- Predictor 2 = Driving Experience (categorical low, high)
+
+Effects representation:
+
+<div id="htmlwidget-2514ce28ae593bde0f73" style="width:504px;height:100px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-2514ce28ae593bde0f73">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Alcohol Consumption\"; \"Road Accidents\"; \"Driving Experience\"\n    node [shape = point, width = 0, height = 0]\n    \"\"\n    \n    \"Driving Experience\" -> \"\"\n    \"Alcohol Consumption\" -> \"\" [arrowhead = none]\n    \"\"-> \"Road Accidents\"\n    \n    subgraph {\n      rank = same; \"Driving Experience\" ; \"\";\n    }\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+Interaction Effect Hypothesis: 
+- `\(H_a\)`: The effect of **alcohol consumption** on **road accidents** is *lower* for **experienced drivers** than it is for **inexperienced drivers**
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**: The main effect hypotheses of the two predictors also have to be formulated
+
+---
+
+# Example of Hypotheses in Research Papers
+
+&lt;img src="img/ex1_title.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="img/ex1_hyp.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Example of Hypotheses in Research Papers
+
+&lt;img src="img/ex2_title.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="img/ex2_hyp1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="img/ex2_hyp2.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Special Case: Mediation Hypothesis
+
+**A mediation is when a Predictor called mediator, explains part of the variability of the outcome already explained by a first predictor.** It is usually used to highlight the influence of psychological features. 
+
+Effect representation:
+
+<div id="htmlwidget-5d05eac75555269eefd0" style="width:504px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-5d05eac75555269eefd0">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Predictor 1\"; \"Predictor 2\"; Outcome\n    \n    \"Predictor 1\" -> {\"Predictor 2\" Outcome}\n    \"Predictor 2\" -> Outcome\n\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+# Special Case: Mediation Hypothesis
+
+Formulation structure:
+
+.center[The effect of {**predictor 1**} on {**outcome**} is explained by the {**predictor 2**}]
+
+Warning: A mediation effect involves 3 requirements:
+1. Predictor 1 needs to have a main effect on the Outcome
+2. Predictor 1 needs to have a main effect on the Predictor 2
+3. The main effect of Predictor 1 on the Outcome needs to disappear when Predictor 2 is taken into account
+
+&gt; Example: 
+- The effect of **employee's age** on **job satisfaction** is explained by their **salary**
+
+&gt; Here, the requirements are:
+1. Employee's age needs to have a main effect on job satisfaction
+2. Employee's age needs to have a main effect on their salary
+3. The main effect of Employee's age on the job satisfaction needs to disappear when salary is taken into account
+
+---
+
+# Mediation Effect Hypothesis Example
+
+Variables:
+- Outcome = Happiness (continuous from 0 to 7)
+- Predictor 1 = Exam Results (continuous from 0 to 100)
+- Predictor 2 = Self-Esteem (continuous from 0 to 7)
+
+<div id="htmlwidget-7531f021030c44f57ef2" style="width:504px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-7531f021030c44f57ef2">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Self-Esteem\"; \"Exam Results\"; Happiness\n    \n    \"Exam Results\" -> {Happiness \"Self-Esteem\"}\n    \"Self-Esteem\" -> Happiness\n\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+Mediation Effect Hypothesis: 
+
+- `\(H_a\)`: The effect of **grades** on **happiness** is explained by **self-esteem**
+
+---
+class: inverse, mline, center, middle
+
+# 3. Method Section: Model, Equation, Material, and Data
+
+---
+class: title-slide, middle
+
+## Model
+
+---
+
+# Model Representation
+
+Models are an overview of the predicted relationship between variables stated in the hypotheses
+
+You must follow these rules:
+- Rule 1: All the arrows correspond to an hypothesis to be tested
+- Rule 2: All the tested hypotheses have to be represented with an arrow
+- Rule 3: Hypotheses using the same Outcome variable should be included in the same model
+- Rule 4: Only one Outcome variable is included in each model (except for SEM model)
+
+---
+
+# Model Representation
+
+.pull-left[
+.center[**A simple arrow is a main effect**]
+
+<div id="htmlwidget-983315589fed18d622a7" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-983315589fed18d622a7">{"x":{"diagram":"\ndigraph rmarkdown {\n  graph [rankdir = LR]\n  \n  node [shape = box]\n  Predictor; Outcome\n        \n  Predictor -> Outcome [label= b1]\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+]
+
+.pull-right[
+
+.center[**A crossing arrow is an interaction effect**]
+
+<div id="htmlwidget-6f1d8b9e786d9d3fe28d" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-6f1d8b9e786d9d3fe28d">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Predictor 1\"; Outcome; \"Predictor 2\"\n    node [shape = point, width = 0, height = 0]\n    \"\"\n    \n    \"Predictor 2\" -> \"\" [label= b2]\n    \"Predictor 1\" -> \"\" [arrowhead = none] [label= b1]\n    \"\"-> Outcome [label= b3]\n    \n    subgraph {\n      rank = same; \"Predictor 2\"; \"\";\n    }\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+.center[Note: By default, an interaction effect involves the test of the main effect hypotheses of all Predictors involved]
+
+]
+
+---
+
+# Structure of Models
+
+Distinguish square and circles
+- **squares** are actual **measures/items**
+- **circles** are **latent variables** related to measures/items
+
+Example:
+- `\(Salary\)` is directly measured (in $, €, or £) so it's a square.
+- `\(Job\,Satisfaction\)` is a latent variable with several questions so it's a circle.
+
+Items used for latent variables can be omitted in a model, variables are the most important.
+
+We can distinguish 2 types of relationship in a model:
+- Main effect relationship
+- Interaction effect relationship
+
+---
+
+# Main Effect Relationship
+
+.pull-left[
+.center[Relationship between one Predictor and one Outcome variable]
+
+<div id="htmlwidget-dcdfc64296f5794e54a4" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-dcdfc64296f5794e54a4">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n    node [shape = box]\n    \n    Predictor -> Outcome\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+This model tests one hypothesis:
+- 1 main effect
+
+]
+.pull-right[
+.center[Relationship between two Predictors and one Outcome variable]
+
+<div id="htmlwidget-873249b169eb6149d57e" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-873249b169eb6149d57e">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n    node [shape = box]\n    \n    \"Predictor 1\" -> Outcome\n    \"Predictor 2\" -> Outcome\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+This model tests two hypotheses:
+- 2 main effects
+]
+
+---
+
+# Interaction Effect Relationship
+
+An interaction means that **the effect of a Predictor 1 on the Outcome variable will be different according the possibilities of a Predictor 2** (also called Moderation).
+
+.pull-left[
+classic representation:
+<div id="htmlwidget-cbd3ad10bd2d35a2e76d" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-cbd3ad10bd2d35a2e76d">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Predictor 1\"; \"Predictor 2\"; Outcome\n    node [shape = point, width = 0, height = 0]\n    \"\"\n    \n    \"Predictor 2\" -> \"\"\n    \"Predictor 1\" -> \"\" [arrowhead = none]\n    \"\"-> Outcome\n    \n    subgraph {\n      rank = same; \"Predictor 2\"; \"\";\n    }\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+.pull-right[
+is the same as:
+<div id="htmlwidget-f25d4e1770d66a86dcce" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-f25d4e1770d66a86dcce">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n    node [shape = box]\n\n    \n    \"Predictor 1\" -> Outcome\n    \"Predictor 2\" -> Outcome\n    \"Predictor 1 X Predictor 2\" -> Outcome\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+This model tests three hypotheses:
+- 2 main effects
+- 1 interaction effect
+
+---
+
+# Types of Model
+
+## Simple Model
+
+- One or more predictors
+- Only one outcome
+- Made of main or/and interaction effects
+
+## Mediation Model (simple or moderated)
+
+- At least 2 predictors (one call Mediator)
+- Only one outcome
+- Made of main effects only for simple mediation / main and interaction effects for moderated mediation
+
+## Structural Equation Model (SEM)
+
+- At least 2 predictors (usually latent variables)
+- One or more outcome
+- Made of main or/and interaction effects
+
+---
+
+# Simple Model
+
+Simple Models are the most statistically powerful, easy to test and reliable models. Always prefer a simple model compared to a more complicated solution.
+
+Warning, including interaction effect requires a significantly higher sample size.
+
+Example:
+
+<div id="htmlwidget-969965edfe9f869aa904" style="width:800px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-969965edfe9f869aa904">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Salary\"; \"Gender\"; \"Age\"\n    node [shape = circle]\n    \"Job Satisfaction\"\n    node [shape = point, width = 0, height = 0]\n    \"\"\n    \n    \"Age\" -> \"Job Satisfaction\"\n    \"Gender\" -> \"\"\n    \"Salary\" -> \"\" [arrowhead = none]\n    \"\" -> \"Job Satisfaction\"\n    \n    subgraph {\n      rank = same; \"Gender\"; \"\";\n    }\n    subgraph {\n      rank = same; \"Age\"; \"Salary\";\n    }\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+This model tests four hypotheses:
+- 3 main effects
+- 1 interaction effect
+
+---
+
+# Mediation Models
+
+A Mediation model is a complex path analysis between 3 variables, where one of them explains the relationship between the other two. It is usually used to identify cognitive process in psychology.
+
+Example:
+
+<div id="htmlwidget-450f171f14364aa3ebed" style="width:800px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-450f171f14364aa3ebed">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Exam Results\"\n    node [shape = oval]\n    \"Self-Esteem\"; Happiness\n    \n    \"Exam Results\" -> {Happiness \"Self-Esteem\"}\n    \"Self-Esteem\" -> Happiness\n\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+This model tests one hypothesis:
+- 1 mediation effect
+- but it requires 2 main effects
+
+---
+
+# Structural Equation Model
+
+A Structural Equation Model (SEM) is a complex path analysis between multiple variables including multiple Outcomes and using factor analysis for latent variable estimation.
+
+<div id="htmlwidget-fbfc52d82635d988c6e1" style="width:800px;height:300px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-fbfc52d82635d988c6e1">{"x":{"diagram":"\ndigraph rmarkdown {\n  graph [rankdir = LR]\n  \n  node [shape = oval]\n  \"Perceived Ease-of-use\"; \"Perceived Usefulness\"; \"Intention to Use\"\n  \n  node [shape = box]\n  PU1; PU2; PU3; PU4; PU5; PEOU1; PEOU2; PEOU3; PEOU4; BI1; BI2; \"Actual Use\"\n  \n  {PU1 PU2 PU3 PU4 PU5} -> \"Perceived Usefulness\" [arrowhead = none]\n  {PEOU1 PEOU2 PEOU3 PEOU4} -> \"Perceived Ease-of-use\" [arrowhead = none]\n  {BI1 BI2} -> \"Intention to Use\" [arrowhead = none]\n  \n  \"Perceived Usefulness\" -> \"Intention to Use\"\n  \"Perceived Ease-of-use\" -> {\"Perceived Usefulness\" \"Intention to Use\"}\n  \"Intention to Use\" -> \"Actual Use\"\n  \n  subgraph {\n      rank = same; \"Perceived Usefulness\"; \"Perceived Ease-of-use\";\n  }\n  \n  subgraph {\n      rank = same; PU1; PU2; PU3; PU4; PU5; PEOU1; PEOU2; PEOU3; PEOU4; BI1; BI2;\n  }\n\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+This model tests four hypotheses:
+- 4 main effects
+- because the relationship between items of a scale and their corresponding latent variable is considered as significant by default if the scale is valid
+
+---
+
+# A Good Model
+
+- Comprehensiveness: Explains a wide range of phenomena
+- Internal Consistency: Propositions and assumptions are consistent and fit together in a coherent manner
+- Parsimony: Contains only those concepts and assumptions essential for the explanation of a phenomenon
+- Testability: Concepts and relational statements are precise.
+- Empirical Validity: Holds up when tested in the real world.
+
+Example: 
+
+<div id="htmlwidget-2f4c52b7f36e26c300a7" style="width:800px;height:300px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-2f4c52b7f36e26c300a7">{"x":{"diagram":"\ndigraph rmarkdown {\n  graph [rankdir = LR]\n  \n  node [shape = oval]\n  \"Perceived Ease-of-use\"; \"Perceived Usefulness\"; \"Intention to Use\"\n  \n  node [shape = box]\n  \"Actual Use\"\n  \n  \"Perceived Usefulness\" -> \"Intention to Use\"\n  \"Perceived Ease-of-use\" -> {\"Perceived Usefulness\" \"Intention to Use\"}\n  \"Intention to Use\" -> \"Actual Use\"\n  \n  subgraph {\n      rank = same; \"Perceived Usefulness\"; \"Perceived Ease-of-use\";\n  }\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+---
+
+# A Bad Theory/Model
+
+- Too complicated
+- Does not explain many things
+- Cannot be tested
+
+Is it bad?
+
+![](https://d3i71xaburhd42.cloudfront.net/2a3e4a3024bfc4df27db07a1d48f77a6f371b0c3/8-Figure1-1.png)
+
+---
+
+# Representing a Model
+
+.pull-left[
+The representation of a model can easily be done directly in a manuscript written with Microsoft Words
+
+For more details, is it also possible to draw the model in Microsoft PowerPoint and to copy-paste it in Microsoft Words
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**:
+
+- Do NOT fill boxes with any color, use only black and white colors.
+- Use line arrow, no thick arrows allowed.
+]
+
+.pull-right[
+&lt;img src="https://www.myofficetricks.com/wp-content/uploads/2020/09/myofficetricks.com_2020-09-23_01-58-57.gif" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+class: title-slide, middle
+
+## Equation
+
+# A Basic Equation
+
+
+
+Let's imagine the perfect scenario: **your predictor Predictor variable explains perfectly the outcome variable**.
+
+The corresponding equation is: `\(Outcome = Predictor\)`
+
+.pull-left[
+&lt;table class="table table-striped" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Observation &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Outcome &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Predictor &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; a &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; b &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; c &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; d &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; e &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; f &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; g &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; h &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; i &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; j &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; k &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+&lt;img src="slides_files/figure-html/unnamed-chunk-33-1.png" width="504" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# A Basic Equation
+
+In the equation `\(Outcome = Predictor\)`, **three coefficients are hidden** because they are unused:
+- the **intercept coefficient** `\(b_{0}\)` (i.e., the value of the Outcome when the Predictor = 0) which is 0 in our case
+- the **estimate coefficient** `\(b_{1}\)`  (i.e., how much the Outcome increases when the Predictor increases by 1) which is 1 in our case
+- the **error coefficient** `\(e\)` (i.e., how far from the prediction line the values of the Outcome are) which is 0 in our case
+
+So in general, the relation between a predictor and an outcome can be written as:
+`$$Outcome = b_{0} + b_{1}\,Predictor + e$$`
+
+which is in our case:
+
+`$$Outcome = 0 + 1 * Predictor + 0$$`
+
+---
+
+# A Basic Equation
+
+The equation `\(Outcome = b_{0} + b_{1}\,Predictor + e\)` is the same as the good old `\(y = ax + b\)` (here ordered as `\(y = b + ax\)`) where `\(b_{0}\)` is `\(b\)` and `\(b_{1}\)` is `\(a\)`.
+
+It is very important to know that under **EVERY** statistical test, a similar equation is used (t-test, ANOVA, Chi-square are all linear regressions).
+
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-1d5df3d80f5735caaf13" style="width:396px;height:396px;"></div>
+<script type="application/json" data-for="htmlwidget-1d5df3d80f5735caaf13">{"x":{"data":[{"x":[0,1,2,3,4,5,6,7,8,9,10],"y":[0,1,2,3,4,5,6,7,8,9,10],"text":["Predictor:  0<br />Outcome:  0","Predictor:  1<br />Outcome:  1","Predictor:  2<br />Outcome:  2","Predictor:  3<br />Outcome:  3","Predictor:  4<br />Outcome:  4","Predictor:  5<br />Outcome:  5","Predictor:  6<br />Outcome:  6","Predictor:  7<br />Outcome:  7","Predictor:  8<br />Outcome:  8","Predictor:  9<br />Outcome:  9","Predictor: 10<br />Outcome: 10"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":1,"size":18.8976377952756,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0.126582278481013,0.253164556962025,0.379746835443038,0.506329113924051,0.632911392405063,0.759493670886076,0.886075949367089,1.0126582278481,1.13924050632911,1.26582278481013,1.39240506329114,1.51898734177215,1.64556962025316,1.77215189873418,1.89873417721519,2.0253164556962,2.15189873417722,2.27848101265823,2.40506329113924,2.53164556962025,2.65822784810127,2.78481012658228,2.91139240506329,3.0379746835443,3.16455696202532,3.29113924050633,3.41772151898734,3.54430379746835,3.67088607594937,3.79746835443038,3.92405063291139,4.05063291139241,4.17721518987342,4.30379746835443,4.43037974683544,4.55696202531646,4.68354430379747,4.81012658227848,4.93670886075949,5.06329113924051,5.18987341772152,5.31645569620253,5.44303797468354,5.56962025316456,5.69620253164557,5.82278481012658,5.9493670886076,6.07594936708861,6.20253164556962,6.32911392405063,6.45569620253165,6.58227848101266,6.70886075949367,6.83544303797468,6.9620253164557,7.08860759493671,7.21518987341772,7.34177215189873,7.46835443037975,7.59493670886076,7.72151898734177,7.84810126582279,7.9746835443038,8.10126582278481,8.22784810126582,8.35443037974684,8.48101265822785,8.60759493670886,8.73417721518987,8.86075949367089,8.9873417721519,9.11392405063291,9.24050632911393,9.36708860759494,9.49367088607595,9.62025316455696,9.74683544303798,9.87341772151899,10],"y":[1.66533453693773e-15,0.126582278481014,0.253164556962027,0.37974683544304,0.506329113924052,0.632911392405065,0.759493670886077,0.88607594936709,1.0126582278481,1.13924050632912,1.26582278481013,1.39240506329114,1.51898734177215,1.64556962025317,1.77215189873418,1.89873417721519,2.0253164556962,2.15189873417722,2.27848101265823,2.40506329113924,2.53164556962025,2.65822784810127,2.78481012658228,2.91139240506329,3.0379746835443,3.16455696202532,3.29113924050633,3.41772151898734,3.54430379746836,3.67088607594937,3.79746835443038,3.92405063291139,4.05063291139241,4.17721518987342,4.30379746835443,4.43037974683544,4.55696202531646,4.68354430379747,4.81012658227848,4.93670886075949,5.06329113924051,5.18987341772152,5.31645569620253,5.44303797468354,5.56962025316456,5.69620253164557,5.82278481012658,5.9493670886076,6.07594936708861,6.20253164556962,6.32911392405063,6.45569620253165,6.58227848101266,6.70886075949367,6.83544303797468,6.9620253164557,7.08860759493671,7.21518987341772,7.34177215189873,7.46835443037975,7.59493670886076,7.72151898734177,7.84810126582278,7.9746835443038,8.10126582278481,8.22784810126582,8.35443037974683,8.48101265822785,8.60759493670886,8.73417721518987,8.86075949367089,8.9873417721519,9.11392405063291,9.24050632911392,9.36708860759494,9.49367088607595,9.62025316455696,9.74683544303797,9.87341772151899,10],"text":["Predictor:  0.0000000<br />Outcome:  0.000000000000001665335","Predictor:  0.1265823<br />Outcome:  0.126582278481014276483","Predictor:  0.2531646<br />Outcome:  0.253164556962026887632","Predictor:  0.3797468<br />Outcome:  0.379746835443039554292","Predictor:  0.5063291<br />Outcome:  0.506329113924052109930","Predictor:  0.6329114<br />Outcome:  0.632911392405064776590","Predictor:  0.7594937<br />Outcome:  0.759493670886077443249","Predictor:  0.8860759<br />Outcome:  0.886075949367089998887","Predictor:  1.0126582<br />Outcome:  1.012658227848102665547","Predictor:  1.1392405<br />Outcome:  1.139240506329115332207","Predictor:  1.2658228<br />Outcome:  1.265822784810127998867","Predictor:  1.3924051<br />Outcome:  1.392405063291140443482","Predictor:  1.5189873<br />Outcome:  1.518987341772153110142","Predictor:  1.6455696<br />Outcome:  1.645569620253165776802","Predictor:  1.7721519<br />Outcome:  1.772151898734178443462","Predictor:  1.8987342<br />Outcome:  1.898734177215191110122","Predictor:  2.0253165<br />Outcome:  2.025316455696203554737","Predictor:  2.1518987<br />Outcome:  2.151898734177215999352","Predictor:  2.2784810<br />Outcome:  2.278481012658228888057","Predictor:  2.4050633<br />Outcome:  2.405063291139241776762","Predictor:  2.5316456<br />Outcome:  2.531645569620254221377","Predictor:  2.6582278<br />Outcome:  2.658227848101266665992","Predictor:  2.7848101<br />Outcome:  2.784810126582279554697","Predictor:  2.9113924<br />Outcome:  2.911392405063292443401","Predictor:  3.0379747<br />Outcome:  3.037974683544304443927","Predictor:  3.1645570<br />Outcome:  3.164556962025316888543","Predictor:  3.2911392<br />Outcome:  3.291139240506329777247","Predictor:  3.4177215<br />Outcome:  3.417721518987342665952","Predictor:  3.5443038<br />Outcome:  3.544303797468355110567","Predictor:  3.6708861<br />Outcome:  3.670886075949367555182","Predictor:  3.7974684<br />Outcome:  3.797468354430380443887","Predictor:  3.9240506<br />Outcome:  3.924050632911393332591","Predictor:  4.0506329<br />Outcome:  4.050632911392405333117","Predictor:  4.1772152<br />Outcome:  4.177215189873417777733","Predictor:  4.3037975<br />Outcome:  4.303797468354430222348","Predictor:  4.4303797<br />Outcome:  4.430379746835443555142","Predictor:  4.5569620<br />Outcome:  4.556962025316455999757","Predictor:  4.6835443<br />Outcome:  4.683544303797468444372","Predictor:  4.8101266<br />Outcome:  4.810126582278481777166","Predictor:  4.9367089<br />Outcome:  4.936708860759494221782","Predictor:  5.0632911<br />Outcome:  5.063291139240506666397","Predictor:  5.1898734<br />Outcome:  5.189873417721519111012","Predictor:  5.3164557<br />Outcome:  5.316455696202531555628","Predictor:  5.4430380<br />Outcome:  5.443037974683544888421","Predictor:  5.5696203<br />Outcome:  5.569620253164557333037","Predictor:  5.6962025<br />Outcome:  5.696202531645569777652","Predictor:  5.8227848<br />Outcome:  5.822784810126583110446","Predictor:  5.9493671<br />Outcome:  5.949367088607595555061","Predictor:  6.0759494<br />Outcome:  6.075949367088607999676","Predictor:  6.2025316<br />Outcome:  6.202531645569620444292","Predictor:  6.3291139<br />Outcome:  6.329113924050632888907","Predictor:  6.4556962<br />Outcome:  6.455696202531645333522","Predictor:  6.5822785<br />Outcome:  6.582278481012657778138","Predictor:  6.7088608<br />Outcome:  6.708860759493670222753","Predictor:  6.8354430<br />Outcome:  6.835443037974683555547","Predictor:  6.9620253<br />Outcome:  6.962025316455696000162","Predictor:  7.0886076<br />Outcome:  7.088607594936708444777","Predictor:  7.2151899<br />Outcome:  7.215189873417720889393","Predictor:  7.3417722<br />Outcome:  7.341772151898733334008","Predictor:  7.4683544<br />Outcome:  7.468354430379746666802","Predictor:  7.5949367<br />Outcome:  7.594936708860759111417","Predictor:  7.7215190<br />Outcome:  7.721518987341771556032","Predictor:  7.8481013<br />Outcome:  7.848101265822784888826","Predictor:  7.9746835<br />Outcome:  7.974683544303797333441","Predictor:  8.1012658<br />Outcome:  8.101265822784808889878","Predictor:  8.2278481<br />Outcome:  8.227848101265822222672","Predictor:  8.3544304<br />Outcome:  8.354430379746833779109","Predictor:  8.4810127<br />Outcome:  8.481012658227847111903","Predictor:  8.6075949<br />Outcome:  8.607594936708858668339","Predictor:  8.7341772<br />Outcome:  8.734177215189872001133","Predictor:  8.8607595<br />Outcome:  8.860759493670885333927","Predictor:  8.9873418<br />Outcome:  8.987341772151896890364","Predictor:  9.1139241<br />Outcome:  9.113924050632910223158","Predictor:  9.2405063<br />Outcome:  9.240506329113923555951","Predictor:  9.3670886<br />Outcome:  9.367088607594935112388","Predictor:  9.4936709<br />Outcome:  9.493670886075948445182","Predictor:  9.6202532<br />Outcome:  9.620253164556961777976","Predictor:  9.7468354<br />Outcome:  9.746835443037973334413","Predictor:  9.8734177<br />Outcome:  9.873417721518986667206","Predictor: 10.0000000<br />Outcome:  9.999999999999998223643"],"type":"scatter","mode":"lines","name":"fitted values","line":{"width":3.77952755905512,"color":"rgba(51,102,255,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[0,0.126582278481013,0.253164556962025,0.379746835443038,0.506329113924051,0.632911392405063,0.759493670886076,0.886075949367089,1.0126582278481,1.13924050632911,1.26582278481013,1.39240506329114,1.51898734177215,1.64556962025316,1.77215189873418,1.89873417721519,2.0253164556962,2.15189873417722,2.27848101265823,2.40506329113924,2.53164556962025,2.65822784810127,2.78481012658228,2.91139240506329,3.0379746835443,3.16455696202532,3.29113924050633,3.41772151898734,3.54430379746835,3.67088607594937,3.79746835443038,3.92405063291139,4.05063291139241,4.17721518987342,4.30379746835443,4.43037974683544,4.55696202531646,4.68354430379747,4.81012658227848,4.93670886075949,5.06329113924051,5.18987341772152,5.31645569620253,5.44303797468354,5.56962025316456,5.69620253164557,5.82278481012658,5.9493670886076,6.07594936708861,6.20253164556962,6.32911392405063,6.45569620253165,6.58227848101266,6.70886075949367,6.83544303797468,6.9620253164557,7.08860759493671,7.21518987341772,7.34177215189873,7.46835443037975,7.59493670886076,7.72151898734177,7.84810126582279,7.9746835443038,8.10126582278481,8.22784810126582,8.35443037974684,8.48101265822785,8.60759493670886,8.73417721518987,8.86075949367089,8.9873417721519,9.11392405063291,9.24050632911393,9.36708860759494,9.49367088607595,9.62025316455696,9.74683544303798,9.87341772151899,10,10,10,9.87341772151899,9.74683544303798,9.62025316455696,9.49367088607595,9.36708860759494,9.24050632911393,9.11392405063291,8.9873417721519,8.86075949367089,8.73417721518987,8.60759493670886,8.48101265822785,8.35443037974684,8.22784810126582,8.10126582278481,7.9746835443038,7.84810126582279,7.72151898734177,7.59493670886076,7.46835443037975,7.34177215189873,7.21518987341772,7.08860759493671,6.9620253164557,6.83544303797468,6.70886075949367,6.58227848101266,6.45569620253165,6.32911392405063,6.20253164556962,6.07594936708861,5.9493670886076,5.82278481012658,5.69620253164557,5.56962025316456,5.44303797468354,5.31645569620253,5.18987341772152,5.06329113924051,4.93670886075949,4.81012658227848,4.68354430379747,4.55696202531646,4.43037974683544,4.30379746835443,4.17721518987342,4.05063291139241,3.92405063291139,3.79746835443038,3.67088607594937,3.54430379746835,3.41772151898734,3.29113924050633,3.16455696202532,3.0379746835443,2.91139240506329,2.78481012658228,2.65822784810127,2.53164556962025,2.40506329113924,2.27848101265823,2.15189873417722,2.0253164556962,1.89873417721519,1.77215189873418,1.64556962025316,1.51898734177215,1.39240506329114,1.26582278481013,1.13924050632911,1.0126582278481,0.886075949367089,0.759493670886076,0.632911392405063,0.506329113924051,0.379746835443038,0.253164556962025,0.126582278481013,0,0],"y":[5.36499345096093e-16,0.126582278481013,0.253164556962026,0.379746835443038,0.506329113924051,0.632911392405064,0.759493670886076,0.886075949367089,1.0126582278481,1.13924050632911,1.26582278481013,1.39240506329114,1.51898734177215,1.64556962025316,1.77215189873418,1.89873417721519,2.0253164556962,2.15189873417722,2.27848101265823,2.40506329113924,2.53164556962025,2.65822784810127,2.78481012658228,2.91139240506329,3.0379746835443,3.16455696202532,3.29113924050633,3.41772151898734,3.54430379746835,3.67088607594937,3.79746835443038,3.92405063291139,4.0506329113924,4.17721518987342,4.30379746835443,4.43037974683544,4.55696202531646,4.68354430379747,4.81012658227848,4.93670886075949,5.06329113924051,5.18987341772152,5.31645569620253,5.44303797468354,5.56962025316456,5.69620253164557,5.82278481012658,5.94936708860759,6.07594936708861,6.20253164556962,6.32911392405063,6.45569620253164,6.58227848101266,6.70886075949367,6.83544303797468,6.9620253164557,7.08860759493671,7.21518987341772,7.34177215189873,7.46835443037975,7.59493670886076,7.72151898734177,7.84810126582278,7.9746835443038,8.10126582278481,8.22784810126582,8.35443037974683,8.48101265822785,8.60759493670886,8.73417721518987,8.86075949367088,8.9873417721519,9.11392405063291,9.24050632911392,9.36708860759493,9.49367088607595,9.62025316455696,9.74683544303797,9.87341772151898,10,10,10,9.87341772151899,9.74683544303798,9.62025316455696,9.49367088607595,9.36708860759494,9.24050632911393,9.11392405063291,8.9873417721519,8.86075949367089,8.73417721518987,8.60759493670886,8.48101265822785,8.35443037974683,8.22784810126582,8.10126582278481,7.9746835443038,7.84810126582279,7.72151898734177,7.59493670886076,7.46835443037975,7.34177215189873,7.21518987341772,7.08860759493671,6.9620253164557,6.83544303797468,6.70886075949367,6.58227848101266,6.45569620253165,6.32911392405063,6.20253164556962,6.07594936708861,5.9493670886076,5.82278481012658,5.69620253164557,5.56962025316456,5.44303797468355,5.31645569620253,5.18987341772152,5.06329113924051,4.9367088607595,4.81012658227848,4.68354430379747,4.55696202531646,4.43037974683544,4.30379746835443,4.17721518987342,4.05063291139241,3.92405063291139,3.79746835443038,3.67088607594937,3.54430379746836,3.41772151898734,3.29113924050633,3.16455696202532,3.03797468354431,2.91139240506329,2.78481012658228,2.65822784810127,2.53164556962026,2.40506329113924,2.27848101265823,2.15189873417722,2.0253164556962,1.89873417721519,1.77215189873418,1.64556962025317,1.51898734177215,1.39240506329114,1.26582278481013,1.13924050632912,1.0126582278481,0.886075949367091,0.759493670886078,0.632911392405066,0.506329113924053,0.379746835443041,0.253164556962028,0.126582278481015,2.79416972877938e-15,5.36499345096093e-16],"text":["Predictor:  0.0000000<br />Outcome:  0.000000000000001665335","Predictor:  0.1265823<br />Outcome:  0.126582278481014276483","Predictor:  0.2531646<br />Outcome:  0.253164556962026887632","Predictor:  0.3797468<br />Outcome:  0.379746835443039554292","Predictor:  0.5063291<br />Outcome:  0.506329113924052109930","Predictor:  0.6329114<br />Outcome:  0.632911392405064776590","Predictor:  0.7594937<br />Outcome:  0.759493670886077443249","Predictor:  0.8860759<br />Outcome:  0.886075949367089998887","Predictor:  1.0126582<br />Outcome:  1.012658227848102665547","Predictor:  1.1392405<br />Outcome:  1.139240506329115332207","Predictor:  1.2658228<br />Outcome:  1.265822784810127998867","Predictor:  1.3924051<br />Outcome:  1.392405063291140443482","Predictor:  1.5189873<br />Outcome:  1.518987341772153110142","Predictor:  1.6455696<br />Outcome:  1.645569620253165776802","Predictor:  1.7721519<br />Outcome:  1.772151898734178443462","Predictor:  1.8987342<br />Outcome:  1.898734177215191110122","Predictor:  2.0253165<br />Outcome:  2.025316455696203554737","Predictor:  2.1518987<br />Outcome:  2.151898734177215999352","Predictor:  2.2784810<br />Outcome:  2.278481012658228888057","Predictor:  2.4050633<br />Outcome:  2.405063291139241776762","Predictor:  2.5316456<br />Outcome:  2.531645569620254221377","Predictor:  2.6582278<br />Outcome:  2.658227848101266665992","Predictor:  2.7848101<br />Outcome:  2.784810126582279554697","Predictor:  2.9113924<br />Outcome:  2.911392405063292443401","Predictor:  3.0379747<br />Outcome:  3.037974683544304443927","Predictor:  3.1645570<br />Outcome:  3.164556962025316888543","Predictor:  3.2911392<br />Outcome:  3.291139240506329777247","Predictor:  3.4177215<br />Outcome:  3.417721518987342665952","Predictor:  3.5443038<br />Outcome:  3.544303797468355110567","Predictor:  3.6708861<br />Outcome:  3.670886075949367555182","Predictor:  3.7974684<br />Outcome:  3.797468354430380443887","Predictor:  3.9240506<br />Outcome:  3.924050632911393332591","Predictor:  4.0506329<br />Outcome:  4.050632911392405333117","Predictor:  4.1772152<br />Outcome:  4.177215189873417777733","Predictor:  4.3037975<br />Outcome:  4.303797468354430222348","Predictor:  4.4303797<br />Outcome:  4.430379746835443555142","Predictor:  4.5569620<br />Outcome:  4.556962025316455999757","Predictor:  4.6835443<br />Outcome:  4.683544303797468444372","Predictor:  4.8101266<br />Outcome:  4.810126582278481777166","Predictor:  4.9367089<br />Outcome:  4.936708860759494221782","Predictor:  5.0632911<br />Outcome:  5.063291139240506666397","Predictor:  5.1898734<br />Outcome:  5.189873417721519111012","Predictor:  5.3164557<br />Outcome:  5.316455696202531555628","Predictor:  5.4430380<br />Outcome:  5.443037974683544888421","Predictor:  5.5696203<br />Outcome:  5.569620253164557333037","Predictor:  5.6962025<br />Outcome:  5.696202531645569777652","Predictor:  5.8227848<br />Outcome:  5.822784810126583110446","Predictor:  5.9493671<br />Outcome:  5.949367088607595555061","Predictor:  6.0759494<br />Outcome:  6.075949367088607999676","Predictor:  6.2025316<br />Outcome:  6.202531645569620444292","Predictor:  6.3291139<br />Outcome:  6.329113924050632888907","Predictor:  6.4556962<br />Outcome:  6.455696202531645333522","Predictor:  6.5822785<br />Outcome:  6.582278481012657778138","Predictor:  6.7088608<br />Outcome:  6.708860759493670222753","Predictor:  6.8354430<br />Outcome:  6.835443037974683555547","Predictor:  6.9620253<br />Outcome:  6.962025316455696000162","Predictor:  7.0886076<br />Outcome:  7.088607594936708444777","Predictor:  7.2151899<br />Outcome:  7.215189873417720889393","Predictor:  7.3417722<br />Outcome:  7.341772151898733334008","Predictor:  7.4683544<br />Outcome:  7.468354430379746666802","Predictor:  7.5949367<br />Outcome:  7.594936708860759111417","Predictor:  7.7215190<br />Outcome:  7.721518987341771556032","Predictor:  7.8481013<br />Outcome:  7.848101265822784888826","Predictor:  7.9746835<br />Outcome:  7.974683544303797333441","Predictor:  8.1012658<br />Outcome:  8.101265822784808889878","Predictor:  8.2278481<br />Outcome:  8.227848101265822222672","Predictor:  8.3544304<br />Outcome:  8.354430379746833779109","Predictor:  8.4810127<br />Outcome:  8.481012658227847111903","Predictor:  8.6075949<br />Outcome:  8.607594936708858668339","Predictor:  8.7341772<br />Outcome:  8.734177215189872001133","Predictor:  8.8607595<br />Outcome:  8.860759493670885333927","Predictor:  8.9873418<br />Outcome:  8.987341772151896890364","Predictor:  9.1139241<br />Outcome:  9.113924050632910223158","Predictor:  9.2405063<br />Outcome:  9.240506329113923555951","Predictor:  9.3670886<br />Outcome:  9.367088607594935112388","Predictor:  9.4936709<br />Outcome:  9.493670886075948445182","Predictor:  9.6202532<br />Outcome:  9.620253164556961777976","Predictor:  9.7468354<br />Outcome:  9.746835443037973334413","Predictor:  9.8734177<br />Outcome:  9.873417721518986667206","Predictor: 10.0000000<br />Outcome:  9.999999999999998223643","Predictor: 10.0000000<br />Outcome:  9.999999999999998223643","Predictor: 10.0000000<br />Outcome:  9.999999999999998223643","Predictor:  9.8734177<br />Outcome:  9.873417721518986667206","Predictor:  9.7468354<br />Outcome:  9.746835443037973334413","Predictor:  9.6202532<br />Outcome:  9.620253164556961777976","Predictor:  9.4936709<br />Outcome:  9.493670886075948445182","Predictor:  9.3670886<br />Outcome:  9.367088607594935112388","Predictor:  9.2405063<br />Outcome:  9.240506329113923555951","Predictor:  9.1139241<br />Outcome:  9.113924050632910223158","Predictor:  8.9873418<br />Outcome:  8.987341772151896890364","Predictor:  8.8607595<br />Outcome:  8.860759493670885333927","Predictor:  8.7341772<br />Outcome:  8.734177215189872001133","Predictor:  8.6075949<br />Outcome:  8.607594936708858668339","Predictor:  8.4810127<br />Outcome:  8.481012658227847111903","Predictor:  8.3544304<br />Outcome:  8.354430379746833779109","Predictor:  8.2278481<br />Outcome:  8.227848101265822222672","Predictor:  8.1012658<br />Outcome:  8.101265822784808889878","Predictor:  7.9746835<br />Outcome:  7.974683544303797333441","Predictor:  7.8481013<br />Outcome:  7.848101265822784888826","Predictor:  7.7215190<br />Outcome:  7.721518987341771556032","Predictor:  7.5949367<br />Outcome:  7.594936708860759111417","Predictor:  7.4683544<br />Outcome:  7.468354430379746666802","Predictor:  7.3417722<br />Outcome:  7.341772151898733334008","Predictor:  7.2151899<br />Outcome:  7.215189873417720889393","Predictor:  7.0886076<br />Outcome:  7.088607594936708444777","Predictor:  6.9620253<br />Outcome:  6.962025316455696000162","Predictor:  6.8354430<br />Outcome:  6.835443037974683555547","Predictor:  6.7088608<br />Outcome:  6.708860759493670222753","Predictor:  6.5822785<br />Outcome:  6.582278481012657778138","Predictor:  6.4556962<br />Outcome:  6.455696202531645333522","Predictor:  6.3291139<br />Outcome:  6.329113924050632888907","Predictor:  6.2025316<br />Outcome:  6.202531645569620444292","Predictor:  6.0759494<br />Outcome:  6.075949367088607999676","Predictor:  5.9493671<br />Outcome:  5.949367088607595555061","Predictor:  5.8227848<br />Outcome:  5.822784810126583110446","Predictor:  5.6962025<br />Outcome:  5.696202531645569777652","Predictor:  5.5696203<br />Outcome:  5.569620253164557333037","Predictor:  5.4430380<br />Outcome:  5.443037974683544888421","Predictor:  5.3164557<br />Outcome:  5.316455696202531555628","Predictor:  5.1898734<br />Outcome:  5.189873417721519111012","Predictor:  5.0632911<br />Outcome:  5.063291139240506666397","Predictor:  4.9367089<br />Outcome:  4.936708860759494221782","Predictor:  4.8101266<br />Outcome:  4.810126582278481777166","Predictor:  4.6835443<br />Outcome:  4.683544303797468444372","Predictor:  4.5569620<br />Outcome:  4.556962025316455999757","Predictor:  4.4303797<br />Outcome:  4.430379746835443555142","Predictor:  4.3037975<br />Outcome:  4.303797468354430222348","Predictor:  4.1772152<br />Outcome:  4.177215189873417777733","Predictor:  4.0506329<br />Outcome:  4.050632911392405333117","Predictor:  3.9240506<br />Outcome:  3.924050632911393332591","Predictor:  3.7974684<br />Outcome:  3.797468354430380443887","Predictor:  3.6708861<br />Outcome:  3.670886075949367555182","Predictor:  3.5443038<br />Outcome:  3.544303797468355110567","Predictor:  3.4177215<br />Outcome:  3.417721518987342665952","Predictor:  3.2911392<br />Outcome:  3.291139240506329777247","Predictor:  3.1645570<br />Outcome:  3.164556962025316888543","Predictor:  3.0379747<br />Outcome:  3.037974683544304443927","Predictor:  2.9113924<br />Outcome:  2.911392405063292443401","Predictor:  2.7848101<br />Outcome:  2.784810126582279554697","Predictor:  2.6582278<br />Outcome:  2.658227848101266665992","Predictor:  2.5316456<br />Outcome:  2.531645569620254221377","Predictor:  2.4050633<br />Outcome:  2.405063291139241776762","Predictor:  2.2784810<br />Outcome:  2.278481012658228888057","Predictor:  2.1518987<br />Outcome:  2.151898734177215999352","Predictor:  2.0253165<br />Outcome:  2.025316455696203554737","Predictor:  1.8987342<br />Outcome:  1.898734177215191110122","Predictor:  1.7721519<br />Outcome:  1.772151898734178443462","Predictor:  1.6455696<br />Outcome:  1.645569620253165776802","Predictor:  1.5189873<br />Outcome:  1.518987341772153110142","Predictor:  1.3924051<br />Outcome:  1.392405063291140443482","Predictor:  1.2658228<br />Outcome:  1.265822784810127998867","Predictor:  1.1392405<br />Outcome:  1.139240506329115332207","Predictor:  1.0126582<br />Outcome:  1.012658227848102665547","Predictor:  0.8860759<br />Outcome:  0.886075949367089998887","Predictor:  0.7594937<br />Outcome:  0.759493670886077443249","Predictor:  0.6329114<br />Outcome:  0.632911392405064776590","Predictor:  0.5063291<br />Outcome:  0.506329113924052109930","Predictor:  0.3797468<br />Outcome:  0.379746835443039554292","Predictor:  0.2531646<br />Outcome:  0.253164556962026887632","Predictor:  0.1265823<br />Outcome:  0.126582278481014276483","Predictor:  0.0000000<br />Outcome:  0.000000000000001665335","Predictor:  0.0000000<br />Outcome:  0.000000000000001665335"],"type":"scatter","mode":"lines","line":{"width":3.77952755905512,"color":"transparent","dash":"solid"},"fill":"toself","fillcolor":"rgba(153,153,153,0.4)","hoveron":"points","hoverinfo":"x+y","showlegend":false,"xaxis":"x","yaxis":"y","frame":null},{"x":[-0.5,10.5],"y":[0,0],"text":"yintercept: 0","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)","dash":"dot"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5],"y":[0.2],"text":"Intercept b₀","hovertext":"x: 5<br />y: 0.2","textfont":{"size":14.6645669291339,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5,6],"y":[5,5],"text":"x: 5<br />xend: 6<br />y: 5<br />yend: 5","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(255,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6,6],"y":[5,6],"text":"x: 6<br />xend: 6<br />y: 5<br />yend: 6","type":"scatter","mode":"lines","line":{"width":1.88976377952756,"color":"rgba(255,0,0,1)","dash":"solid"},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7.5],"y":[5.5],"text":"Estimate b₁","hovertext":"x: 7.5<br />y: 5.5","textfont":{"size":14.6645669291339,"color":"rgba(0,0,0,1)"},"type":"scatter","mode":"text","hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":23.3059360730594,"r":7.30593607305936,"b":37.2602739726027,"l":37.2602739726027},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.5,10.5],"tickmode":"array","ticktext":["1","2","3","4","5","6","7","8","9","10"],"tickvals":[1,2,3,4,5,6,7,8,9,10],"categoryorder":"array","categoryarray":["1","2","3","4","5","6","7","8","9","10"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Predictor","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-0.5,10.5],"tickmode":"array","ticktext":["1","2","3","4","5","6","7","8","9","10"],"tickvals":[1,2,3,4,5,6,7,8,9,10],"categoryorder":"array","categoryarray":["1","2","3","4","5","6","7","8","9","10"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(235,235,235,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Outcome","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":"transparent","line":{"color":"rgba(51,51,51,1)","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"994a35efb0a2":{"x":{},"y":{},"type":"scatter"},"994ab357758":{"x":{},"y":{}},"994a632e3827":{"yintercept":{}},"994a6f68bb4f":{"x":{},"y":{}},"994a44e178ad":{"x":{},"xend":{},"y":{},"yend":{}},"994a2eb9c92f":{"x":{},"xend":{},"y":{},"yend":{}},"994a274744a0":{"x":{},"y":{}}},"cur_data":"994a35efb0a2","visdat":{"994a35efb0a2":["function (y) ","x"],"994ab357758":["function (y) ","x"],"994a632e3827":["function (y) ","x"],"994a6f68bb4f":["function (y) ","x"],"994a44e178ad":["function (y) ","x"],"994a2eb9c92f":["function (y) ","x"],"994a274744a0":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+
+---
+
+# Relationship between Variables
+
+Relationship between a `\(Predictor\)` and an `\(Outcome\)` variable (stated in a main effect hypothesis or in an interaction effect hypothesis) is analysed in terms of:
+
+.center[**"How many units of the Outcome variable increases/decreases/changes when the Predictor increases by 1 unit?"**]
+
+For example:
+&gt; How much Job Satisfaction increases when the Salary increases by €1?
+
+The value of how much of the Outcome variable changes:
+- Is called the **Estimate** (also called Unstandardised Estimate)
+- Uses the letter `\(b\)` in equations (e.g., `\(b_1\)`, `\(b_2\)`, `\(b_3\)`, ...)
+
+For example:
+&gt; If Job Satisfaction increases by 0.1 on a scale from 0 to 5 when the Salary increases by €1, then *b* associated to Salary is 0.1
+
+---
+
+# Significance of Relationships
+
+To evaluate if the strength of the relationship `\(b\)` between a Predictor and an Outcome variable is significant, an equation is statistically tested using all the predictors related to the same Outcome.
+
+The basic equation of a statistical model is:
+
+`$$Outcome = b_0 + b_n \,Predictors + Error$$`
+
+where the `\(Predictors\)` includes all the `\(n\)` variables used as predictor in formulated hypotheses using this specific `\(Outcome\)` variable and being associated to a specific `\(b\)` estimate.
+
+This expresses the idea that:
+- The Outcome can be described by one or multiple predictors.
+- The remaining part of the Outcome's variability that is not explained by the predictors is call the Error.
+
+---
+
+# Equations, Variables and Effect Types
+
+Except in special cases:
+- An Outcome (or Dependent Variable) has to be Continuous
+- A Predictor can be Continuous or Categorical 
+
+Example: `\(Job\,Satisfaction = b_{0} + b_{1}\,Salary + b_{2}\,Origin + e\)`
+
+In this equation:
+- `\(Salary\)` is continuous with a main effect on `\(Job\,Satisfaction\)` ( `\(b_{1}\)`)
+- `\(Origin\)` is categorical with a main effect on `\(Job\,Satisfaction\)` ( `\(b_{2}\)`)
+
+---
+
+# Equations, Variables and Effect Types
+
+An interaction effect is represented by multiplying the 2 predictors involved:
+
+`$$Job\,Satisfaction = b_{0} + b_{1}\,Salary + b_{2}\,Origin + b_{3}\,Salary*Origin + e$$`
+
+In this equation:
+- `\(Salary\)` is continuous with a main effect on `\(Job\,Satisfaction\)` ( `\(b_{1}\)`)
+- `\(Origin\)` is categorical with a main effect on `\(Job\,Satisfaction\)` ( `\(b_{2}\)`)
+- `\(Salary\)` and `\(Origin\)` have an interaction effect on `\(Job\,Satisfaction\)` ( `\(b_{3}\)`)
+
+---
+class: title-slide, middle
+
+## Material
+
+---
+
+# Survey Example
+
+**Perceived Usefulness:**
+- *(PU1)* Using MS EXCEL would improve my performance in statistical analysis 
+- *(PU2)* Using MS EXCEL would increase my productivity in statistical analysis
+- *(PU3)* Using MS EXCEL would enhance my effectiveness in statistical analysis
+- *(PU4)* Using MS EXCELR would make it easier for me to engage in statistical analysis 
+- *(PU5)* I think using MS EXCEL is very useful for me to engage in statistical analysis 
+
+**Perceived Ease-Of-Use:**
+- *(PEOU1)* I think learning to use MS EXCEL is easy 
+- *(PEOU2)* I think doing what I want via MS EXCEL is easy 
+- *(PEOU3)* I think becoming skilful at using MS EXCEL is easy 
+- *(PEOU4)* I think using MS EXCEL is easy 
+
+**Behavioural Intention:**
+- *(BI1)* Assuming I had access to MS EXCEL, I intend to use it 
+- *(BI2)* Given that I had access to MS EXCEL, I predict that I would use it 
+
+---
+
+# Survey Example
+
+<div id="htmlwidget-67c25ca3336b15b0293a" style="width:504px;height:400px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-67c25ca3336b15b0293a">{"x":{"diagram":"\ndigraph rmarkdown {\n  graph [rankdir = LR]\n  \n  node [shape = oval]\n  \"Perceived Ease-of-use\"; \"Perceived Usefulness\"; \"Intention to Use\"; \"Actual Use\"\n  \n  node [shape = box]\n  PU1; PU2; PU3; PU4; PU5; PEOU1; PEOU2; PEOU3; PEOU4; BI1; BI2; AU\n  \n  {PU1 PU2 PU3 PU4 PU5} -> \"Perceived Usefulness\" [arrowhead = none]\n  {PEOU1 PEOU2 PEOU3 PEOU4} -> \"Perceived Ease-of-use\" [arrowhead = none]\n  {BI1 BI2} -> \"Intention to Use\" [arrowhead = none]\n  {AU} -> \"Actual Use\" [arrowhead = none]\n  \n  \"Perceived Usefulness\" -> \"Intention to Use\"\n  \"Perceived Ease-of-use\" -> {\"Perceived Usefulness\" \"Intention to Use\"}\n  \"Intention to Use\" -> \"Actual Use\"\n  \n  subgraph {\n      rank = same; \"Perceived Usefulness\"; \"Perceived Ease-of-use\";\n  }\n  \n  subgraph {\n      rank = same; PU1; PU2; PU3; PU4; PU5; PEOU1; PEOU2; PEOU3; PEOU4; BI1; BI2;\n  }\n\n}\n","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+Google form: https://forms.gle/epRj45iR1jL7r3wV7
+
+Qualtrics: https://dcubusinessschool.eu.qualtrics.com/jfe/form/SV_0JSAjOvXVxzJvgh
+
+---
+class: title-slide, middle
+
+## Data
+
+---
+
+# Online Survey Platforms
+
+Online Survey Software are replacing the paper-pencil method. Here is a list of some:
+
+- Google Form (from your google drive, DCU hosted)
+- Qualtrics (https://dcubusinessschool.eu.qualtrics.com, DCU Business School account)
+- Survey Monkey (https://www.surveymonkey.com/, freemium)
+- LimeSurvey (https://www.limesurvey.org/, freemium)
+- Gorilla Experiment (https://gorilla.sc, pay per participants)
+
+--
+  
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Remember: 
+
+- Always ask for age and gender in a survey
+- Participant recruitment by list of contact/email has between 15% and 10% of answer rate
+
+--
+
+Platforms to find and reward participants:
+- Amazon MTurk (https://www.mturk.com/ mainly US and India)
+- Prolific Academic (https://www.prolific.co/ world wide)
+- Qualtrics
+- Survey Monkey
+
+---
+
+# Accessing your Data
+
+From a Google Form
+1. Login Google Account (be sure to use the DCU account)
+2. Go to Drive
+3. Click on your Survey form
+4. Click on Response
+5. Download Response Spreadsheet as .csv
+
+From a Qualtrics survey
+1. Login Qualtrics (DCU login/pwd) https://dcubusinessschool.eu.qualtrics.com
+2. Click on Data &amp; Analysis
+3. Click on Export &amp; Import &gt; Export Data...&gt; CSV (Use numeric values)
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Remember: 
+
+- Always save the unmodified raw version of your data on the cloud (e.g., google drive, dropbox, one drive, ...)
+- Make sure you can download them as a .csv file.
+
+---
+
+# JAMOVI: Stats. Open. Now.
+
+Jamovi is a statistical spreadsheet software designed to be **easy to use**. Jamovi is a compelling alternative to costly statistical products such as SPSS, SAS and JMP to cite a few.
+
+Jamovi will always be **free and open** because Jamovi is made by the scientific community, for the scientific community.
+
+- It can be **downloaded from its website** https://www.jamovi.org/
+- It can also be **used without installation**, in a web browser, https://cloud.jamovi.org/ for **online demo** but this demo undergoes periods of downtime, and may cease functioning (without warning) at any time.
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Book "Learning Statistics with JAMOVI" free here: https://www.learnstatswithjamovi.com/
+
+&lt;img src="https://www.jamovi.org/assets/header-logo.svg" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Always Prepare the Data
+
+.center[**To efficiently perform any kind of analysis on data, it is essential to format the data file in the most suitable way.**]
+
+To do so, 2 steps are required:
+
+1. Cleaning the data from any noise
+2. Transforming the data in order to obtain the relevant variables 
+
+---
+
+# Calculation of Latent Variables' Score
+
+Here are the results with 3 students. The score of the "Perceived Ease-of-use of MS EXCEL" latent variable is calculated using the average of all items.
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; employee &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; q1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; q2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; q3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; q4 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; peo_score &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sinead &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.50 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Patrick &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.25 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Damien &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.25 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# Validity and Reliability
+
+**Validity = is my variable measuring the construct that I think I am measuring?**
+- Does the measurement make sense? 
+- Would the results be reproduced with another scale measuring the same latent variable?
+- Are the results correlated to latent variables that are related?
+
+Validity test is only performed when a scale is created (no need for existing scales)
+
+**Reliability = consistency of items inside a measurement**
+- Test-retest reliability
+- Inter-rater reliability
+- Correlation inter-item (Cronbach's alpha)
+
+Reliability test is performed every time a scale is used but only using Cronbach's alpha
+
+---
+
+# Validity and Reliability
+
+&lt;img src="https://www.publichealthnotes.com/wp-content/uploads/2018/08/560px-Reliability_and_validity.svg_.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: inverse, mline, center, middle
+
+# 4. Result Section
+
+---
+class: title-slide, middle
+
+## Descriptives Statistics
+
+---
+class: title-slide, middle
+
+## Hypothesis Testing
+
+---
+
+# Good Practices with Hypothesis Testing
+
+- All hypotheses using the **same Outcome variable have to be tested in the same model** and not separately.
+
+- Even if available, no need to use t-tests or ANOVA separate modules because the **Linear Regression can test all types of hypothesis**.
+
+- **Do not use a correlation matrix to test your hypotheses**, they are exculively dedicated to evaluate correlations between predictors.
+
+- A `\(p\)`-value never equals `\(0\)`, **round to `\(p &lt; .001\)` if lower than `\(0.001\)`**.
+
+- Despite never shown in academic papers, the **4 conditions of applications for Linear Model should always be checked**:
+  - Linearity of the relationship,
+  - Normal distribution of the residuals,
+  - Homogeneity of the residuals,
+  - Independance of observations.
+
+---
+class: title-slide, middle
+
+## Hypotheses with Continuous Predictors and with Categorical Predictors Having 2 Categories
+
+---
+
+# Hypothesis Testing
+
+1. Open your file
+2. Check the type of your variables
+3. **Analyses** &gt; **Regression** &gt; **Linear Regression**
+4. Set the Outcome as DV and 
+  - **To test the main effect hypotheses**: set the Predictors as Covariates/Factors
+  - **To test interaction effect hypotheses**: In Model Builder, select all predictor with `CTRL` (win) or `Command` (mac) and bring them as interaction in the model
+  
+--
+  
+Communicate the Results about the full model and each hypothesis:
+
+--
+
+- Use **Model Fit Measure Table** to evaluate the accuracy of the full model
+
+The predictions from a model including all effects are significant/not-significant better than without these effects `\((R^2 = value_{R^2}\)`, `\(F(df1,df2) = value_{F}\)`, `\(p = value_{p})\)`
+
+--
+
+- Use **Model Coefficients Table** to conclude about each hypothesis
+
+The effect of `\(Predictor\)` on `\(Outcome\)` is statistically significant/not-significant, therefore `\(H_0\)` can be rejected/accepted `\((b = value_{estimate}, 95\% CI [lower\,CI, upper\,CI]\)`, `\(t(df2) = value_t\)`, `\(p = value_{p})\)`.
+
+---
+class: title-slide, middle
+
+## Hypotheses with Categorical Predictors Having 3 or more Categories
+
+---
+
+# Hypothesis Testing
+
+1. Open your file
+2. Check the type of your variables
+3. **Analyses** &gt; **Regression** &gt; **Linear Regression**
+4. Set the Outcome as DV and 
+  - **To test the main effect hypotheses**: set the Predictors as Factors
+  - **To test interaction effect hypotheses**: In Model Builder options, select all predictor with `CTRL` (win) or `Command` (mac) and bring them as interaction in the model
+5. Tick **ANOVA Test** in Model Coefficient options
+  
+--
+  
+Communicate the Results about the full model and each hypothesis:
+
+--
+
+- Use **Model Fit Measure Table** to evaluate the accuracy of the full model
+
+The predictions from a model including all effects are significant/not-significant better than without these effects `\((R^2 = value_{R^2}\)`, `\(F(df1,df2) = value_{F}\)`, `\(p = value_{p})\)`
+
+- Use **Omnibus ANOVA Test Table** to conclude about each hypothesis
+
+The effect of `\(Predictor\)` on `\(Outcome\)` is statistically significant/not-significant, therefore `\(H_0\)` can be rejected/accepted `\((F(df_{predictor}, df_{residual}) = value_F\)`, `\(p = value_{p})\)`.
+
+---
+
+# Mediation Analysis in Jamovi
+
+In Jamovi it is possible to do all steps at once using the **jAMM module** (Jamovi Advanced Mediation Models)
+
+To do it, install the **jAMM module** by clicking on the cross "Modules" at top right corner &gt; Jamovi library.
+
+Then follow the example described here: https://jamovi-amm.github.io/glm_example1.html
+
+&lt;img src="https://jamovi-amm.github.io/glm/main.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# SEM Analysis in Jamovi
+
+In Jamovi it is possible to run an SEM either by coding with Lavaan syntax (https://lavaan.ugent.be/) or by using an user friendly interface with the **SEMLj module**
+
+To do it, install the **SEMLj module** by clicking on the cross "Modules" at top right corner &gt; Jamovi library.
+
+Then follow the example described here: https://semlj.github.io/example2.html
+
+&lt;img src="https://semlj.github.io/pics/overview.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, mline, center, middle
+
+# 6. Discussion &amp; Conclusion
+
+---
+
+# Interpret the Analyses
+
+From here...
+
+- There is no number to be shown and no specific guidelines
+- Correct interpretation comes if results have been understood and if reasons for the results to be the ones obtained have been identified
+
+&lt;img src="https://pbs.twimg.com/media/EhjV0v-XgAEh2pk?format=jpg&amp;name=large" width="40%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, mline, left, middle
+
+&lt;img class="circle" src="https://github.com/damien-dupre.png" width="250px"/&gt;
+
+# Thanks for your attention and don't hesitate if you have any questions!
+
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @damien_dupre](http://twitter.com/damien_dupre)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @damien-dupre](http://github.com/damien-dupre)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg> damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/cols_macro.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "zenburn",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
