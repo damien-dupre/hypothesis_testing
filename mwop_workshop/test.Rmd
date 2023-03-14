@@ -1,0 +1,149 @@
+---
+title: "Hypothesis Testing with Moderation and Mediation Models"
+subtitle: "Guidelines for Successful Statistics with Jamovi"
+author: "Damien Dupré"
+date: "Dublin City University"
+output:
+  xaringan::moon_reader:
+    css: ["default", "metropolis", "metropolis-fonts", "css/custom_design.css"]
+    lib_dir: libs
+    nature:
+      beforeInit: "libs/cols_macro.js"
+      highlightStyle: zenburn
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+# libraries --------------------------------------------------------------------
+library(anicon)
+library(countdown)
+library(emo)
+library(fontawesome)
+library(kableExtra)
+library(knitr)
+library(nomnoml)
+library(tidyverse)
+library(VennDiagram)
+
+# general options --------------------------------------------------------------
+options(scipen = 999)
+set.seed(123)
+
+# chunk options ----------------------------------------------------------------
+opts_chunk$set(
+  cache.extra = rand_seed, 
+  message = FALSE, 
+  warning = FALSE, 
+  error = FALSE, 
+  echo = FALSE,
+  cache = FALSE,
+  comment = "", 
+  fig.align = "center", 
+  fig.retina = 3
+  )
+
+# functions --------------------------------------------------
+include_img <- function(img_name) {
+  file.path("~/OneDrive/Media/assets", img_name) |> 
+    knitr::include_graphics()
+}
+```
+
+# A Closer Look at Academic Papers
+
+Conducting a research is similar to writing an academic paper. Every sections are essential and have their own purpose:
+
+--
+
+1. **The Introduction** introduce your research question (which can be your title too) and includes the variables that you will investigate.
+
+--
+
+2. **The Literature Review** indicates how the variables are related (model) and finishes with your hypotheses. The model includes all hypotheses that will be tested and only the tested hypotheses.
+
+--
+
+3. **The Method** presents 1/ the variables and 2/ the mathematical equation that summarises your model and which includes the test of all hypotheses.
+
+--
+
+4. **The Results** describes the numeric outputs of the tests for each hypothesis.
+
+--
+
+5. **The Discussion and Conclusion** are interpretations of these results. Strengths and weaknesses of the study are also presented.
+
+---
+class: inverse, mline, center, middle
+
+# 1. Introduction: Declare your Variables
+
+---
+
+# Academic Papers' Introduction
+
+An introduction is a section **presenting your variables and why you investigate them**.
+
+There is little reference to previous academic research, just a description of actual facts.
+
+It should end with your **Research Question**, a question that includes all the main variables investigated which wonders about a potential relationship between them.
+
+--
+
+For example:
+- "What is the relationship between Job Satisfaction, Salary and Gender?"
+- "How does sales experience influence the performance of sales managers and sales representatives?"
+
+```{r out.width='25%'}
+include_graphics("https://memegenerator.net/img/instances/65219961/there-will-come-a-day-i-easily-write-an-introduction-to-a-paper-but-it-is-not-this-day.jpg")
+```
+
+---
+
+# What is a Variable?
+
+A variable itself is a subtle concept, but basically it comes down to finding some way of assigning a *value* (numbers or characters) to **labels**.
+
+--
+
+In these examples, the **bold part is "label"** and the *italicised part is "the value of the variable"*:
+
+- My **height** is *183 cm*
+- This morning, I had a *large* **coffee**
+- My **gender** is *male*
+
+Each variable has a **Role** and a **Type**, it is essential to learn how to identify them.
+
+---
+class: title-slide, middle
+
+## Type of Variables
+
+---
+
+# Type of Variables
+
+Variables can have different types:
+
+- **Categorical**: If the variable's possibilities are words or sentences (character string)
+
+  - if the possibilities cannot be ordered: Categorical Nominal (*e.g.*, $gender$ male, female, other)
+  
+  - if the possibilities can be ordered: Categorical Ordinal (*e.g.*, $size$ S, M, L)
+  
+- **Continuous**: If the variable's possibilities are numbers (*e.g.*, $age$, $temperature$, ...) 
+
+--
+
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` **Warning**: Variables can be converted to either Categorical and Continuous but it is always better to keep them in their correct scale.
+
+```{r out.width='30%'}
+include_graphics("~/OneDrive/Media/assets/jamovi_icons.png")
+```
+
+---
+class: title-slide, middle
+
+## Status of Variables
+
