@@ -682,7 +682,7 @@ class: title-slide, middle
 2. **Analyses** > **Regression** > **Linear Regression**
 3. Set the Outcome as DV and 
   - **To test main effect hypotheses**: set the Predictors as Factors
-  - **To test interaction effect hypotheses**: In `Model Builder` options, select all predictors with <kbd>CTRL</kbd> (win) or <kbd>command</kbd> (mac) and bring them as **interaction** in the model
+  - **To test interaction effect hypotheses**: In `Model Builder` options, select all predictors with <kbd>CTRL</kbd> (win) or <kbd>command</kbd> (mac) and bring them as **interaction**
 5. Tick **ANOVA Test** in `Model Coefficient` options
   
 --
@@ -995,9 +995,9 @@ class: title-slide, middle
 
 --
 
-```{r}
-include_graphics("img/gif_us.gif")
-```
+To know more about Variables, Hypothesis Formulation, Models, Equations, and Hypothesis Testing with the General Linear Model, see my slides [MT611: Quantitative Research Methods](https://damien-dupre.github.io/) from Lecture 1 to Lecture 6
+
+To know more about Mediation Hypothesis Testing, see my slides [MT612: Advanced Quantitative Research Methods](https://damien-dupre.github.io/mt612/lectures/lecture_5) Lecture 5
 
 ---
 class: inverse, mline, left, middle
