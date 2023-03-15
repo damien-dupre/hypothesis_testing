@@ -404,7 +404,7 @@ class: title-slide, middle
 ---
 class: title-slide, middle
 
-## Excercise
+## Exercise
 
 1. Open the file "organisation_alpha.xls" in Jamovi
 2. Perform a reliability test of the items q1 to q9
@@ -774,7 +774,7 @@ The interaction effect between $salary$ and $gender$ on $job\,satisfaction$ is n
 ---
 class: title-slide, middle
 
-## Excercise
+## Exercise
 
 Test the following hypotheses:
 
@@ -793,7 +793,7 @@ class: title-slide, middle
 
 ---
 
-# Mediation
+# Mediation Effect
 
 Models with more than one outcome variables are a closer step toward causal models while not testing causality directly.
 
@@ -818,33 +818,43 @@ grViz("
 
 ---
 
-# Mediation
+# Mediation Effect
 
-In this example, room temperature predicts the amount that people drink; specifically, we'd expect that higher temperatures would increase drinking.
+Let's take the example from [University of Virginia](https://data.library.virginia.edu/introduction-to-mediation-analysis/): $self-esteem$ mediates the effect of $grades$ on $happiness$
+
+Data analysis is also presented in the [Jamovi Advanced Mediation Model website](https://jamovi-amm.github.io/glm_example1.html) and the data can be downloaded [here](https://jamovi-amm.github.io/glm_example1.html)
 
 ```{r}
-grViz("
+DiagrammeR::grViz("
   digraph {
     graph [rankdir = LR]
   
-    'Room temp' -> 'Amount drunk'
-
-  }", width = 800, height = 200)
-```
-
-However, it's possible that higher temperatures increase drinking indirectly: higher temperatures make people feel more thirsty, which in turn makes them drink more.
-
-```{r}
-grViz("
-  digraph {
-    graph [rankdir = LR]
+    node []
+    'self-esteem'; 'grades'; happiness
     
-    'Room temp' -> {Thirst 'Amount drunk'}
-    Thirst -> 'Amount drunk'
+    'grades' -> {happiness 'self-esteem'}
+    'self-esteem' -> happiness
 
-  }", width = 800, height = 200)
+  }", width = 800, height = 300)
 ```
 
+---
+
+# Mediation Effect
+
+Imagine that previous studies have suggested that higher grades predict higher happiness. This is the **Total Effect**.
+
+```{r out.width="50%"}
+include_graphics("https://data.library.virginia.edu/files/mediation_ex1.png")
+```
+
+However, grades are not the real reason that happiness increases. Let's hypothesize that good grades boost one’s self-esteem and then high self-esteem boosts one’s happiness. This is the **Indirect Effect**.
+
+```{r out.width="50%"}
+include_graphics("https://data.library.virginia.edu/files/mediation_ex2.png")
+```
+
+Self-esteem is a mediator that explains the underlying mechanism of the relationship between grades and happiness.
 
 ---
 
@@ -896,7 +906,7 @@ The path $ab$ is the **indirect effect** of the Predictor on the Outcome
 
 ---
 
-# Is there mediation?
+# Is there Mediation?
 
 A mediation is obtained if:
 - The estimate $c$, **total effect**, is significantly different from 0 (**requirement 1**)
@@ -950,7 +960,7 @@ include_graphics("https://jamovi-amm.github.io/examples/virginia_simple/results1
 ---
 class: title-slide, middle
 
-## Excercise
+## Exercise
 
 Test the following hypothesis:
 
@@ -982,7 +992,6 @@ class: title-slide, middle
 - **Do not use a correlation matrix to test your hypotheses**, they are excursively dedicated to evaluate correlations between predictors.
 
 - A $p$-value never equals $0$, **round to $p < .001$ if shown as $0.000$**.
-
 
 --
 
