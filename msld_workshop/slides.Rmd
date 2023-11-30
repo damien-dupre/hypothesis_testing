@@ -892,6 +892,8 @@ Communicate the Results about the full model and each hypothesis:
 
 > The effect of $Predictor$ on $Outcome$ is statistically significant/not-significant, therefore $H_0$ can be rejected/accepted $(F(df_{predictor}, df_{residual}) = value_F$, $p = value_{p})$.
 
+`r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` When using the Omnibus ANOVA Test Table, the estimate cannot be interpreted. Only the p-value is useful.
+
 ---
 class: title-slide, middle
 
@@ -947,24 +949,24 @@ include_graphics("img/jamovi_regression_example.gif")
 # Model Fit Interpretation
 
 ```{r out.width='60%'}
-include_graphics("img/jamovi_regression_table.png")
+include_graphics("img/jamovi_regression_fit.png")
 ```
 
-The predictions from model including $salary$, $gender$ and their interaction on $job\,satisfaction$ are not-significantly better than without these effects $(R^2 = 0.227$, $F(3,14) = 1.368$, $p = 0.293)$.
+While the main effects of $salary$ and $gender$ as well as their interaction predict 22.7% of the variance of $job\,satisfaction$, the predictions from this model is are not-significantly better than without these effects $(R^2 = 0.227$, $F(3,14) = 1.368$, $p = 0.293)$.
 
 ---
 
 # Model Coefficients Interpretation
 
-```{r out.width='60%'}
-include_graphics("img/jamovi_regression_table.png")
+```{r out.width='40%'}
+include_graphics("img/jamovi_regression_coefficients.png")
 ```
 
-The effect of $salary$ on $job\,satisfaction$ is not statistically significant, therefore $H_0$ cannot be rejected $(b = 0.000, 95\% CI [-0,000, 0.000]$, $t(14) = 0.659$, $p = 0.520)$.
+$job\,satisfaction$ increases by less than 0.001 when $salary$ increases by €1. However, the effect of $salary$ on $job\,satisfaction$ is not statistically significant, therefore $H_0$ cannot be rejected $(b = 0.000, 95\% CI [-0,000, 0.000]$, $t(14) = 0.659$, $p = 0.520)$.
 
-The effect of $gender$ on $job\,satisfaction$ is not statistically significant, therefore $H_0$ cannot be rejected $(b = 2.138, 95\% CI [-0,241, 4.517]$, $t(14) = 1.927$, $p = 0.074)$.
+$job\,satisfaction$ of male employees is higher by 2.138 compared to the $job\,satisfaction$ of their female colleagues. However, the effect of $gender$ on $job\,satisfaction$ is not statistically significant, therefore $H_0$ cannot be rejected $(b = 2.138, 95\% CI [-0,241, 4.517]$, $t(14) = 1.927$, $p = 0.074)$.
 
-The interaction effect between $salary$ and $gender$ on $job\,satisfaction$ is not statistically significant, therefore $H_0$ cannot be rejected $(b = -0.000, 95\% CI [-0,000, 0.000]$, $t(14) = -1.701$, $p = 0.111)$.
+The effect of $salary$ on $job\,satisfaction$ of male employees is lower by less than 0.001 compared to the effect of $salary$ on $job\,satisfaction$ of females employees. In addition, the interaction effect between $salary$ and $gender$ on $job\,satisfaction$ is not statistically significant, therefore $H_0$ cannot be rejected $(b = -0.000, 95\% CI [-0,000, 0.000]$, $t(14) = -1.701$, $p = 0.111)$.
 
 ---
 class: title-slide, middle
