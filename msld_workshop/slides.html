@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Data Analysis Workshop using JAMOVI</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Damien Dupré" />
+    <script src="libs/header-attrs-2.25/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/metropolis-fonts.css" rel="stylesheet" />
+    <link href="libs/font-awesome-animation-1.0/font-awesome-animation-emi.css" rel="stylesheet" />
+    <script src="libs/fontawesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <link href="libs/countdown-0.4.0/countdown.css" rel="stylesheet" />
+    <script src="libs/countdown-0.4.0/countdown.js"></script>
+    <script src="libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+    <script src="libs/viz-1.8.2/viz.js"></script>
+    <link href="libs/DiagrammeR-styles-0.2/styles.css" rel="stylesheet" />
+    <script src="libs/grViz-binding-1.0.10/grViz.js"></script>
+    <link rel="stylesheet" href="css/custom_design.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Data Analysis Workshop using JAMOVI
+]
+.subtitle[
+## MSc in Strategic Learning and Development
+]
+.author[
+### Damien Dupré
+]
+.date[
+### Dublin City University
+]
+
+---
+
+
+
+
+# Objectives
+
+#### This workshop has been organised to help you dealing with the Statistics part of your assignment, and this is exactly what we will do!
+
+*Here are your instructions:*
+
+--
+
+- You need the original numerical raw data- not data where the analysis has already been done e.g by consultants.
+
+&gt; **What is a clean dataset and how to do the transformations required before statistical analyses?**
+
+--
+
+- You should report results on statistical analysis in layman terms to demonstrate understanding.
+
+&gt; **Why are we doing statistical analyses in simple terms?**
+
+---
+
+# Objectives
+
+- The level of statistical analyses required includes descriptive statistics e.g. reporting means/averages but go beyond this to show impact on X?.
+  
+&gt; **How to do descriptive statistics and inferential statistics in JAMOVI?**
+
+--
+
+- Produce (only as is relevant to your question) t-tests, correlations, regressions, ANOVA (not all of these will be relevant to everyone’s question so choose the appropriate statistical test for the question posed).
+
+&gt; **How to choose a statistical test?**
+
+--
+
+- You can include control data (if you wish but not necessary) (other variables which may effect the variables you are studying- but just the minimum) in your analysis e.g. gender, age, education etc.
+  
+&gt; **What are the different roles of variables and how to process them?**
+
+--
+
+- If your results reveal no relationship- that is fine- critique your approach, context and discuss your ‘no relationship’ finding in context of scientific evidence
+
+&gt; **How to interpret the results of a statistical analysis?**
+
+---
+
+# JAMOVI: Stats. Open. Now.
+
+Jamovi is a statistical spreadsheet software designed to be **easy to use**. Jamovi is a compelling alternative to costly statistical products such as SPSS, SAS and JMP to cite a few.
+
+Jamovi will always be **free and open** because Jamovi is made by the scientific community, for the scientific community.
+
+- It can be **downloaded from its website** https://www.jamovi.org/
+- It can also be **used without installation**, in a web browser, https://cloud.jamovi.org/ for **online demo** but this demo undergoes periods of downtime, and may cease functioning (without warning) at any time.
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Book "Learning Statistics with JAMOVI" free here: https://www.learnstatswithjamovi.com/
+
+&lt;img src="https://www.jamovi.org/assets/header-logo.svg" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# JAMOVI GUI
+
+&lt;img src="img/jamovi_gui.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+class: title-slide, middle
+
+## Demonstration
+
+---
+
+class: inverse, mline, center, middle
+
+# 1. What is a clean dataset and what are the transformations required before statistical analyses?
+
+---
+
+# What is a clean dataset?
+
+.pull-left[
+### 1. Ditch the chart and all non values
+Charts can mess up with other software
+
+### 2. Headings in row 1
+Remove blank rows and no more than 1 heading row
+
+### 3. Columns start at column A
+Remove blank columns
+
+### 4. Do not replace missing values
+Leave missing values empty
+]
+
+--
+
+.pull-right[
+&lt;img src="img/clean_tweet.png" width="100%" style="display: block; margin: auto;" /&gt;&lt;img src="img/clean_answer.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# What are the transformations required?
+
+If your data is not from a survey, **no transformation required**
+
+--
+
+If your data is from a survey: 
+
+### 1. Convert opinion scales from text to numeric
+- e.g., "Strongly Disagree" becomes 1, "Strongly Agree" becomes 7, ...
+- Sometimes it is automatically done by the survey platform, **if not you have to manually convert** participants' answers to numbers.
+- In EXCEL, `Replace All` can be efficient but also dangerous (e.g., replacing "Agree" with "4" will change all "Strongly Agree" to "Strongly 4")
+
+### 2. Calculate an average score for the psychometric scales
+- Multiple questions are used to assess the same latent variable (e.g., job satisfaction of employees)
+- All questions need to have the same range of answer possibilities (e.g., from strongly disagree to strongly agree)
+
+---
+
+# What are the transformations required?
+
+Some scales include **negative formulation** of some questions to check that participants are reading the questions.
+
+For example, in a Job Satisfaction scale:
+- `\(q1\)`: I love my job
+- `\(q2\)`: I like going to work everyday
+- `\(q3\)`: I hate what I'm doing at work
+
+If I have a high Job Satisfaction, I will agree with the 2 first questions and disagree with the 3rd question. 
+
+However, to calculate a Latent Variable score **all items should have the same formulation** (all positive formulation or all negative formulation). 
+
+Here, **the answers of the 3rd item have to be reversed**.
+
+---
+
+# What are the transformations required?
+
+In our example, here are the results with 3 employees:
+- The item `\(q3\)`, negatively formulated, has been reversed in `\(q3_r\)`
+- The score of the "Job Satisfaction" latent variable is calculated using the average of `\(q1\)`, `\(q2\)` and `\(q3_r\)` items.
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; employee &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; q1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; q2 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; q3 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; q3_r &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; job_satisfaction_score &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sinead &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.666667 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Patrick &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.333333 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Damien &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.333333 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+
+# What are the transformations required?
+
+In order to create an average score for each latent variable of your survey, **you need to make sure that your scale is reliable**.
+
+Reliability assessment is performed every time a scale is used by **calculating its Cronbach's alpha**.
+
+Cronbach's alpha indicates the **overall correlation between questions** (inter-item correlation).
+
+Cronbach's alpha has a maximum of 1:
+
+- If its value is **higher than 0.7**, then the scale is reliable to measure the latent variable 
+- If its value is **lower than 0.7**, then proceed with caution or remove/modify the scale to obtain a value higher than 0.7
+
+**Latent variables are calculated only if the scale reliability (Cronbach's alpha) is satisfactory.**
+
+---
+
+# Automatic Calculation
+
+In JAMOVI, you can automatically calculate a latent variable from within `Reliability Analysis` 
+
+To automatically calculate the average of all items (including reversed items) and creating the latent variable score:
+
+- After obtaining a satisfying Cronbach's alpha, unfold the `Save` options on the left menu.
+- Tick `Mean score` (a new column is created in your data)
+
+&lt;img src="img/cronbach_save.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Automatic Calculation
+
+Rename the newly created column from the `Data` tab:
+
+&lt;img src="img/cronbach_save_2.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Warning: the calculation of the average includes the reversed items but the values of the reversed items themselves haven't been modified in the Data.
+
+---
+class: title-slide, middle
+
+## Demonstration
+
+---
+class: title-slide, middle
+
+## Exercise
+
+1. Open the file "organisation_alpha.xls" in Jamovi
+2. Perform a reliability test of the items q1 to q9
+3. Calculate the latent variable `Job Satistfaction` for these items
+
+<div class="countdown" id="timer_d21035c8" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">10</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+class: inverse, mline, center, middle
+
+# 2. Why are we doing statistical analyses in simple terms?
+
+---
+# Why are we doing statistical analyses?
+
+The activity of research is about **analysing phenomena** using a rigorous methodology. 
+
+--
+
+Because causality analyses are extremely difficult, **research only look for relationships** between variables.
+
+--
+
+However, the **relationships observed in a sample are not necessarily generalisable** but due to a range of factors such as sample characteristics, study design, and potential confounding variables.
+
+--
+
+Therefore, hypotheses of the existence of relationships are tested by calculating **the probability to obtain the results knowing that there are no relationship beyond the sample**.
+
+---
+
+# What is a Variable?
+
+A variable itself is a subtle concept, but basically it comes down to finding some way of assigning *numbers or characters* to **labels**.
+
+For example:
+
+- My **height** is *183 cm*
+- This morning, I had a *large* **coffee**
+- My **gender** is *male*
+
+The **bold part is "the thing that varies"** and the *italicised part is "the value of the variable"*.
+
+---
+class: title-slide, middle
+
+## Type of Variables
+
+---
+
+# Type of Variables
+
+Variables can have different types:
+
+- **Categorical**: If the variable's possibilities are words or sentences (character string)
+
+  - if the possibilities cannot be ordered: Categorical Nominal (*e.g.*, `\(gender\)` male, female, other)
+  
+  - if the possibilities can be ordered: Categorical Ordinal (*e.g.*, `\(size\)` S, M, L)
+  
+- **Continuous**: If the variable's possibilities are numbers (*e.g.*, `\(age\)`, `\(temperature\)`, ...) 
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**: Variables can be converted to either Categorical and Continuous but it is always better to keep them in their correct scale.
+
+&lt;img src="img/jamovi_icons.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+---
+class: title-slide, middle
+
+## Role of Variables
+
+---
+
+# Role of Variables
+
+It's important to keep the two roles "variable doing the explaining" and "variable being explained" distinct.
+
+Let's denote the:
+ - **Outcome**: "variable to be explained" (also called `\(Y\)`, Dependent Variable, or DV)
+ - **Predictor**: "variable doing the explaining" (also called `\(X\)`, Independent Variable, or IV)
+ 
+--
+
+Statistics is only about identifying relationship between Predictor and Outcome variables also called **effect**
+
+&gt; An effect between 2 variables means that the changes in the values of a predictor variable are related to changes in the values of an outcome variable.
+
+--
+
+The only difference for **control variables** is that they are included in the analysis but there are not included in the hypotheses.
+
+They are used to remove an irrelevant explanation of the variable changes.
+
+---
+
+# Hypotheses in a Nutshell
+
+Hypotheses are:
+1. Predictions supported by theory/literature
+2. Affirmations designed to precisely describe the relationships between variables
+
+Their formulation include:
+
+- Predictor(s) / Independent Variable(s)
+- Outcome / Dependent Variable (DV)
+- Direction of the outcome if the predictor increases
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**: 
+
+Hypothesis cannot test equality between groups or modalities, they can only test differences or effects
+
+---
+
+# Alternative *vs.* Null Hypotheses
+
+Hypotheses have to test differences or effects, they are also called `\(H_a\)` (for alternative hypothesis)
+
+Every alternative hypothesis has a null hypothesis counterpart (no difference between groups or according values) also called `\(H_0\)` (pronounce H naught or H zero)
+
+--
+
+`\(H_a\)` is viewed as a “challenger” hypothesis to the null hypothesis `\(H_0\)`.
+  
+&gt; **Statistics are used to test the probability of obtaining your results if the Null Hypothesis is true. If this probability is low, then we reject the Null Hypothesis (and consider the Alternative Hypothesis as credible).**
+
+--
+
+But there is only two kind of alternative hypotheses: **Main Effect Hypotheses** and **Interaction Effect Hypotheses**
+
+---
+
+# Main Effect Hypothesis
+
+Is the **predicted relationship between one `\(Predictor\)` and one `\(Outcome\)` variable**
+
+- The `\(Outcome\)` needs to be Continuous (but some complex models can use a Categorical Outcome)
+
+- The `\(Predictor\)` can be either Continuous or Categorical but the hypothesis formulation will change with its type
+
+Effect representation:
+
+<div id="htmlwidget-9eceb20dc2a931752ae4" style="width:504px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-9eceb20dc2a931752ae4">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n    node [shape = box]\n    \n    \"Predictor\" -> \"Outcome\"\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**: The direction of the arrow does not involve causality, only correlation.
+
+---
+
+# Main Effect Hypothesis Templates
+
+In the following formulation templates, **replace the variable names with yours** and *select the direction of the effect expected* ...
+
+- #### Case 1: Predictor is Continuous 
+
+.small[{**outcome**} {*increases/decreases/changes*} when {**predictor**} increases]
+
+&gt; .small[**Job satisfaction** *increases* when **salary** increases]
+
+--
+
+- #### Case 2: Predictor is Categorical (2 Categories)
+
+.small[The {**outcome**} of {**predictor category 1**} is {*higher/lower/different*} than the {**outcome**} of {**predictor category 2**}]
+
+&gt; .small[The **Job satisfaction** of **EU employees** is *higher* than the **job satisfaction** of **Non-EU employees**]
+
+--
+
+- #### Case 3: Predictor is Categorical (3 or more Categories)
+
+.small[The {**outcome**} of at least one of the {**predictor**} is {*higher/lower/different*} than the {**outcome**} of the other {**predictor**}]
+
+&gt; .small[The **Job satisfaction** of at least one of the **company's departments** is *higher* than the **Job satisfaction** of the other **company's departments**]
+
+---
+
+# Main Effect Hypothesis Examples
+
+Variables:
+
+- Outcome = Exam Results (continuous from 0 to 100)
+- Predictor 1 = Sleep Time (continuous from 0h to 24h)
+- Predictor 2 = Breakfast (categorical *yes* or *no*)
+
+Effects representation:
+
+<div id="htmlwidget-f30d7598595affc4f25a" style="width:504px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-f30d7598595affc4f25a">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n    node [shape = box]\n  \n    \"Sleep Time\" -> \"Exam Results\"\n    \"Breakfast\" -> \"Exam Results\"\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+--
+
+Main Effect Hypotheses: 
+
+- `\(H_{a1}\)`: **Exam results** *increase* when students’ **sleep time** increases
+- `\(H_{a2}\)`: **Exam results** of students **who eat breakfast** will be *higher* than **exam results** of students **who do not eat breakfast** 
+
+---
+
+# Interaction Effect Hypothesis
+
+**It predicts the influence of a second predictor on the relationship between a first predictor and an outcome variable**
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**:
+
+- The second predictor is also called moderator.
+- The main effect of each predictor must be hypothesised as well
+- The role of first and second predictors can be inverted with the exact same statistical results
+
+.pull-left[
+Effects representation:
+
+<div id="htmlwidget-b85bf888dc62471906a9" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-b85bf888dc62471906a9">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Predictor 1\"; \"Predictor 2\"; Outcome\n    node [shape = point, width = 0, height = 0]\n    \"\"\n    \n    \"Predictor 2\" -> \"\"\n    \"Predictor 1\" -> \"\" [arrowhead = none]\n    \"\"-> Outcome\n    \n    subgraph {\n      rank = same; \"Predictor 2\"; \"\";\n    }\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+.pull-right[
+
+Exactly the same results:
+<div id="htmlwidget-88fdd2a34d502a66744b" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-88fdd2a34d502a66744b">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n    node [shape = box]\n\n    \"Predictor 1\" -> Outcome\n    \"Predictor 2\" -> Outcome\n    \"Predictor 1 X Predictor 2\" -> Outcome\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+
+# Interaction Effect Hypothesis Templates
+
+In the following formulation templates, **replace the variable names with yours** and *select the direction of the effect expected* ...
+
+--
+
+- #### Case 1: Predictor 2 is Continuous
+
+.small[The effect of {**predictor 1**} on {**outcome**} is {*higher/lower/different*} when {**predictor 2**} increases]
+
+--
+
+- #### Case 2: Predictor 2 is Categorical (2 Categories)
+
+.small[The effect of {**predictor 1**} on {**outcome**} is {*higher/lower/different*} for {**predictor 2 category 1**} than for {***predictor 2 category 2**}]
+
+--
+
+- #### Case 3: Predictor 2 is Categorical (3 or more Categories)
+
+.small[The effect of {**predictor 1**} on {**outcome**} is {*higher/lower/different*} for at least one of {**predictor 2**}]
+
+---
+
+# Interaction Effect Hypothesis Examples
+
+Variables:
+
+- Outcome = Exam Results (continuous from 0 to 100)
+- Predictor 1 = Sleep Deprivation (categorical low, medium, high)
+- Predictor 2 = Gender (categorical male vs. female)
+
+Effects representation:
+
+<div id="htmlwidget-8e1fe96c0688a849169a" style="width:504px;height:100px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-8e1fe96c0688a849169a">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = box]\n    \"Sleep Deprivation\"; \"Exam Results\"; Gender\n    node [shape = point, width = 0, height = 0]\n    \"\"\n    \n    Gender -> \"\"\n    \"Sleep Deprivation\" -> \"\" [arrowhead = none]\n    \"\"-> \"Exam Results\"\n    \n    subgraph {\n      rank = same; Gender; \"\";\n    }\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+--
+
+Interaction Effect Hypothesis: 
+- `\(H_a\)`: The effect of **sleep deprivation** on **exam results** is *higher* for **Males students** than it is for **Females students**
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> **Warning**: The main effect hypotheses of the two predictors also have to be formulated
+
+---
+class: inverse, mline, center, middle
+
+# 3. How to do descriptive statistics and inferential statistics in JAMOVI?
+
+---
+
+# Anatomy of JAMOVI
+
+### 1. Different symbols for **variable types**
+
+&lt;img src="img/jamovi_icons.png" width="15%" style="display: block; margin: auto;" /&gt;
+
+### 2. Distinction between **Factors** and **Covariates**:
+  - A Factor is a predictor of type categorical (nominal or ordinal)
+  - A Covariate is a predictor of type continuous
+  
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Expected variable type is displayed in bottom right corner of boxes
+
+### 3. Customise your analysis by **unfolding optional boxes**
+
+---
+
+# Describing the Variables
+
+In an Academic Research Paper, once the latent variables are calculated, basic statistical summaries are calculated and presented in a text.
+
+Here is a screenshot from a published paper:
+
+&lt;img src="img/paper_descriptive.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Summary Tables in Jamovi
+
+In the `Analyses` Tab, `Exploration` Icon, select "Descriptives" and choose your variables:
+
+&lt;img src="img/jamovi_descr_table.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Summary Figures in Jamovi
+
+In the same "Descriptives" module, unfold the "Plots" options and select any of Histograms, Box Plots, or Bar Plots.
+
+&lt;img src="img/jamovi_descr_figure_1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> Q-Q Plots are not linear regressions and shouldn't be used for this purpose.
+
+---
+
+# Summary Figures in Jamovi
+
+In the `Analyses` Tab, `Exploration` Icon, select "Scatterplot" and choose your variables:
+
+&lt;img src="img/jamovi_descr_figure_3.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Correlation Matrix with Predictors
+
+In the `Analyses` Tab, `Regression` Icon, select "Correlation Matrix" and choose your variables:
+
+&lt;img src="img/jamovi_correlation_matrix.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, mline, center, middle
+
+# 4. How to choose a statistical test?
+
+---
+
+# How to choose a statistical test?
+
+If the Outcome variable is continuous and ...
+
+--
+
+- If there are **one or more continuous predictors**, then use a **linear regression**.
+
+&gt; Example: **Job satisfaction** *increases* when **salary** increases
+
+--
+
+- If there is **only 1 predictor which is categorical with 2 categories**, then use a **T-test**.
+
+&gt; Example: The **Job satisfaction** of **EU employees** is *higher* than the **job satisfaction** of **Non-EU employees**
+
+--
+
+- If there is **only 1 predictor which is categorical with more than 2 categories** or if there are **more than 1 categorical predictors**, then use an **ANOVA**.
+
+&gt; Example: The **Job satisfaction** of at least one of the **company's departments** is *higher* than the **Job satisfaction** of the other **company's departments**
+
+--
+
+<span>&lt;i class="fas  fa-exclamation-triangle faa-flash animated faa-slow " style=" color:red;"&gt;&lt;/i&gt;</span> You don't have to choose, all of them are parts of the **General Linear Model**
+
+---
+
+# General Linear Model Everywhere
+
+.pull-left[
+Most of the common statistical models (t-test, correlation, ANOVA; chi-square, etc.) are **special cases of linear models**.
+
+This beautiful simplicity means that there is less to learn. In particular, it all comes down to `\(y = ax + b\)` which most students know from secondary school. 
+
+Unfortunately, **stats intro courses are usually taught as if each test is an independent tool**, needlessly making life more complicated for students and teachers alike.
+
+Here, only **one test is taught to rule them all**: the General Linear Model (GLM).
+]
+
+.pull-right[
+&lt;img src="https://psyteachr.github.io/msc-data-skills/images/memes/glm_meme.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+
+# The General Linear Model
+
+A General Linear Model is used **to test all the hypotheses at once** and to calculate the predictors' estimate (relationship strength with the outcome).
+
+Example:
+
+`$$Outcome = b_{0} + b_{1}\,Predictor\,1 + b_{2}\,Predictor\,2+ b_{3}\,Predictor\,1*Predictor\,2 + e$$`
+
+The estimates `\(b_0, b_1, ..., b_n\)` are calculated by a JAMOVI.
+
+- `\(b_0\)` is the intercept and has no interest for hypothesis testing
+- `\(b_1, ..., b_n\)` are predictors' effect estimate and each of them is used to test an hypothesis
+
+The predictors' effect estimate `\(b_1, ..., b_n\)` are **the value of the slope of the best line between each predictor** and the outcome. 
+
+It indicates **how many units of the outcome variable increases/decreases/changes when the predictor increases by 1 unit**
+
+---
+
+# Applied Example
+
+### Imagine the following case study...
+
+&gt; The CEO of Organisation Beta has problems with the well-being of employees and wants to investigate the relationship between **Job Satisfaction (js_score)**, **salary** and **performance (perf)**.
+
+--
+
+### Therefore the CEO formulate 3 hypotheses:
+
+- `\(H_{a1}\)`: `\(js\_score\)` increases when `\(salary\)` increases 
+- `\(H_{a2}\)`: `\(js\_score\)` increases when `\(perf\)` increases
+- `\(H_{a3}\)`: The effect of `\(salary\)` on `\(js\_score\)` increases when `\(perf\)` increases
+
+--
+
+### The corresponding model is:
+
+`$$js\_score = b_{0} + b_{1}\,salary + b_{2}\,perf + b_{3}\,salary*perf +  e$$`
+
+---
+
+# Analysis of the Estimate
+
+- If `\(b_1, ..., b_n = 0\)`, then:
+  - The regression line is horizontal (no slope)
+  - When the Predictor increases by 1 unit, the Outcome variable does not change
+  - **The null hypothesis is not rejected**
+
+--
+
+- If `\(b_1, ..., b_n &gt; 0\)`, then:
+  - The regression line is positive (slope up)
+  - When the Predictor increases by 1 unit, the Outcome variable increases by `\(b\)`
+  - **The null hypothesis is rejected and the alternative hypothesis considered as plausible**
+
+--
+
+- If `\(b_1, ..., b_n &lt; 0\)`, then:
+  - The regression line is negative (slope down)
+  - When the Predictor increases by 1 unit, the Outcome variable decreases by `\(b\)`
+  - **The null hypothesis is rejected and the alternative hypothesis considered as plausible**
+  
+---
+
+# Significance of Effect's Estimate
+
+The statistical significance of an effect estimate depends on the **strength of the relationship** and on the **sample size**:
+
+- An estimate of `\(b_1 = 0.02\)` can be very small but still significantly different from `\(b_1 = 0\)`
+- Whereas an estimate of `\(b_1 = 0.35\)` can be stronger but in fact not significantly different from `\(b_1 = 0\)`
+
+--
+
+The significance is the probability to obtain your results with your sample in the null hypothesis scenario:
+
+- Also called `\(p\)`-value
+- Is between 0% and 100% which corresponds to a value between 0.0 and 1.0
+
+**If the `\(p\)`-value is lower to 5% or 0.05, then the probability to obtain your results in the null hypothesis scenario is low enough to say that the null hypothesis scenario is rejected and there must be a link between the variables.**
+
+--
+
+Remember that the `\(p\)`-value is the probability of the data given the null hypothesis: `\(P(data|H_0)\)`.
+
+---
+class: inverse, mline, center, middle
+
+# 5. How to process variables and how to interpret the results of a statistical analysis?
+
+---
+class: title-slide, middle
+
+## Hypotheses with Continuous Predictors and with Categorical Predictors Having 2 Categories
+
+---
+
+# Hypothesis Testing
+
+.pull-left[
+1. Check the type of your variables
+2. **Analyses** &gt; **Regression** &gt; **Linear Regression**
+3. Set the Outcome as DV and 
+  - **To test main effect hypotheses**: set the Predictors as Covariates/Factors
+  - **To test interaction effect hypotheses**: In `Model Builder`, select all predictors with &lt;kbd&gt;CTRL&lt;/kbd&gt; (win) or &lt;kbd&gt;command&lt;/kbd&gt; (mac) and bring them as **interaction** in the model Block
+4. In `Model Fit`, tick ✅ **Overall Model Test - F test**
+5. In `Model Coefficients`, tick ✅ **Estimate - Confidence interval**
+]
+
+.pull-right[
+&lt;img src="img/jamovi_testing_1.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+  
+---
+
+# Hypothesis Testing
+  
+Communicate the Results about the full model and each hypothesis:
+
+- Use **Model Fit Measure Table** to evaluate the accuracy of the full model
+
+&gt; The predictions from a model including all effects are significantly/not-significantly better than without these effects `\((R^2 = value_{R^2}\)`, `\(F(df1,df2) = value_{F}\)`, `\(p = value_{p})\)`
+
+- Use **Model Coefficients Table** to conclude about each hypothesis
+
+&gt; The effect of `\(Predictor\)` on `\(Outcome\)` is statistically significant/not-significant, therefore `\(H_0\)` can be rejected/accepted `\((b = value_{estimate}, 95\% CI [lower\,CI, upper\,CI]\)`, `\(t(df2) = value_t\)`, `\(p = value_{p})\)`.
+
+---
+class: title-slide, middle
+
+## Hypotheses with Categorical Predictors Having 3 or more Categories
+
+---
+
+# Hypothesis Testing
+
+.pull-left[
+1. Check the type of your variables
+2. **Analyses** &gt; **Regression** &gt; **Linear Regression**
+3. Set the Outcome as DV and 
+  - **To test main effect hypotheses**: set the Predictors as Factors
+  - **To test interaction effect hypotheses**: In `Model Builder` options, select all predictors with &lt;kbd&gt;CTRL&lt;/kbd&gt; (win) or &lt;kbd&gt;command&lt;/kbd&gt; (mac) and bring them as **interaction**
+4. In `Model Fit`, tick ✅ **Overall Model Test - F test**
+5. In `Model Coefficients`, tick ✅ **Estimate - Confidence interval**
+6. In `Model Coefficients`, Tick ✅ **ANOVA Test**
+]
+
+.pull-right[
+&lt;img src="img/jamovi_testing_2.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+  
+---
+
+# Hypothesis Testing
+  
+Communicate the Results about the full model and each hypothesis:
+
+- Use **Model Fit Measure Table** to evaluate the accuracy of the full model
+
+&gt; The predictions from a model including all effects are significantly/not-significantly better than without these effects `\((R^2 = value_{R^2}\)`, `\(F(df1,df2) = value_{F}\)`, `\(p = value_{p})\)`
+
+- Use **Omnibus ANOVA Test Table** to conclude about each hypothesis
+
+&gt; The effect of `\(Predictor\)` on `\(Outcome\)` is statistically significant/not-significant, therefore `\(H_0\)` can be rejected/accepted `\((F(df_{predictor}, df_{residual}) = value_F\)`, `\(p = value_{p})\)`.
+
+---
+class: title-slide, middle
+
+## Demonstration
+
+Test of the following hypotheses:
+
+- `\(H_a1:\)` The **job satisfaction** of employees increases when their **salary (2018)** increases
+- `\(H_a2:\)` The **job satisfaction** of **female** employees is lower than the **job satisfaction** of **male** employees
+- `\(H_a3:\)` The effect of **salary (2018)** on **job satisfaction** is higher for **male** than it is for **female** employees
+
+---
+class: title-slide, middle
+
+## Demonstration
+
+Model Representation:
+
+<div id="htmlwidget-bb3486349adfa5d821dc" style="width:400px;height:200px;" class="grViz html-widget "></div>
+<script type="application/json" data-for="htmlwidget-bb3486349adfa5d821dc">{"x":{"diagram":"\n  digraph {\n    graph [rankdir = LR]\n  \n    node [shape = circle]\n    \"job\nsatisfaction\"; salary; gender\n    node [shape = point, width = 0, height = 0]\n    \"\"\n    \n    gender -> \"\" [label= b2]\n    salary -> \"\" [arrowhead = none] [label= b1]\n    \"\"-> \"job\nsatisfaction\" [label= b3]\n    \n    subgraph {\n      rank = same; gender; \"\";\n    }\n  }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+
+Corresponding Equation:
+
+`$$job\,satisfaction = b_0 + b_1\,salary + b2\,gender + b_3\,salary*gender + e$$`
+
+---
+
+# Solution
+
+&lt;img src="img/jamovi_regression_example.gif" style="display: block; margin: auto;" /&gt;
+
+---
+
+# Solution
+
+&lt;img src="img/jamovi_regression_table.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+The predictions from model including `\(salary\)`, `\(gender\)` and their interaction on `\(job\,satisfaction\)` are not-significantly better than without these effects `\((R^2 = 0.227\)`, `\(F(3,14) = 1.368\)`, `\(p = 0.293)\)`.
+
+---
+
+# Solution
+
+&lt;img src="img/jamovi_regression_table.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+The effect of `\(salary\)` on `\(job\,satisfaction\)` is not statistically significant, therefore `\(H_0\)` cannot be rejected `\((b = 0.000, 95\% CI [-0,000, 0.000]\)`, `\(t(14) = 0.659\)`, `\(p = 0.520)\)`.
+
+The effect of `\(gender\)` on `\(job\,satisfaction\)` is not statistically significant, therefore `\(H_0\)` cannot be rejected `\((b = 2.138, 95\% CI [-0,241, 4.517]\)`, `\(t(14) = 1.927\)`, `\(p = 0.074)\)`.
+
+The interaction effect between `\(salary\)` and `\(gender\)` on `\(job\,satisfaction\)` is not statistically significant, therefore `\(H_0\)` cannot be rejected `\((b = -0.000, 95\% CI [-0,000, 0.000]\)`, `\(t(14) = -1.701\)`, `\(p = 0.111)\)`.
+
+---
+class: title-slide, middle
+
+## Exercise
+
+Test the following hypotheses:
+
+- `\(H_a1:\)` The **job satisfaction** of employees increases when their **salary (2019)** increases
+- `\(H_a2:\)` The **job satisfaction** of employees in at least one **location** is different from the **job satisfaction** of employees in the other **locations**
+- `\(H_a3:\)` The effect of **salary (2019)** on **job satisfaction** is different for at least one **location** compared to the other **locations**
+
+<div class="countdown" id="timer_69f27801" data-warn-when="60" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+class: title-slide, middle
+
+## Last Advice
+
+---
+
+# Good Practices with Hypothesis Testing
+
+- All hypotheses using the **same Outcome variable have to be tested in the same model** and not separately.
+
+- Even if available, no need to use t-tests or ANOVA separate modules because the **Linear Regression can test all types of hypothesis**.
+
+- **Do not use a correlation matrix to test your hypotheses**, they are exclusively dedicated to evaluate correlations between predictors.
+
+- A `\(p\)`-value never equals `\(0\)`, **round to `\(p &lt; .001\)` if shown as `\(0.000\)`**.
+
+--
+
+To know more about Variables, Hypothesis Formulation, Models, Equations, and Hypothesis Testing with the General Linear Model, see my slides [MT611: Quantitative Research Methods](https://damien-dupre.github.io/) from Lecture 1 to Lecture 6
+
+---
+class: inverse, mline, left, middle
+
+&lt;img class="circle" src="https://github.com/damien-dupre.png" width="250px"/&gt;
+
+# Thanks for your attention and don't hesitate if you have any questions!
+
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> @damien_dupre](http://twitter.com/damien_dupre)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> @damien-dupre](http://github.com/damien-dupre)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:1em;width:1.25em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M579.8 267.7c56.5-56.5 56.5-148 0-204.5c-50-50-128.8-56.5-186.3-15.4l-1.6 1.1c-14.4 10.3-17.7 30.3-7.4 44.6s30.3 17.7 44.6 7.4l1.6-1.1c32.1-22.9 76-19.3 103.8 8.6c31.5 31.5 31.5 82.5 0 114L422.3 334.8c-31.5 31.5-82.5 31.5-114 0c-27.9-27.9-31.5-71.8-8.6-103.8l1.1-1.6c10.3-14.4 6.9-34.4-7.4-44.6s-34.4-6.9-44.6 7.4l-1.1 1.6C206.5 251.2 213 330 263 380c56.5 56.5 148 56.5 204.5 0L579.8 267.7zM60.2 244.3c-56.5 56.5-56.5 148 0 204.5c50 50 128.8 56.5 186.3 15.4l1.6-1.1c14.4-10.3 17.7-30.3 7.4-44.6s-30.3-17.7-44.6-7.4l-1.6 1.1c-32.1 22.9-76 19.3-103.8-8.6C74 372 74 321 105.5 289.5L217.7 177.2c31.5-31.5 82.5-31.5 114 0c27.9 27.9 31.5 71.8 8.6 103.9l-1.1 1.6c-10.3 14.4-6.9 34.4 7.4 44.6s34.4 6.9 44.6-7.4l1.1-1.6C433.5 260.8 427 182 377 132c-56.5-56.5-148-56.5-204.5 0L60.2 244.3z"/></svg> damien-datasci-blog.netlify.app](https://damien-datasci-blog.netlify.app)  
+[<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/></svg> damien.dupre@dcu.ie](mailto:damien.dupre@dcu.ie)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="libs/cols_macro.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "zenburn",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
