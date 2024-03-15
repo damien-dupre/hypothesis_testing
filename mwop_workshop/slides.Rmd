@@ -163,7 +163,7 @@ Sometimes is automatically done by the survey platform, **if not you have to con
 # Data Preparation
 
 ```{r}
-include_graphics("img/jamovi_coding.gif")
+include_img("jamovi_coding.gif")
 ```
 
 ---
@@ -224,7 +224,7 @@ In the `Analysis` Tab:
 3. Bring all the items for the same theoretical construct in the `Items` box
 
 ```{r out.width='80%'}
-include_graphics("img/cronbach_1.png")
+include_img("cronbach_1.png")
 ```
 
 In our example, alpha = -2.91: **This too low and something is wrong**
@@ -236,7 +236,7 @@ In our example, alpha = -2.91: **This too low and something is wrong**
 Have a look at the Cronbach's alpha **if an item is dropped**:
 
 ```{r out.width='100%'}
-include_graphics("img/cronbach_4.png")
+include_img("cronbach_4.png")
 ```
 
 ---
@@ -269,7 +269,7 @@ For an item ranging from 0 to 10, reversing this item will apply the following t
 - 10 becomes 0
 
 ```{r out.width='80%'}
-include_graphics("img/cronbach_5.png")
+include_img("cronbach_5.png")
 ```
 ]
 
@@ -284,7 +284,7 @@ To identify which items have to be reversed, **have a look at the correlation he
 Heatmap **before** reversing negatively correlated items:
 
 ```{r out.width='70%'}
-include_graphics("img/cronbach_2.png")
+include_img("cronbach_2.png")
 ```
 
 ---
@@ -298,7 +298,7 @@ To identify which items have to be reversed, **have a look at the correlation he
 Heatmap **after** reversing negatively correlated items:
 
 ```{r out.width='70%'}
-include_graphics("img/cronbach_3.png")
+include_img("cronbach_3.png")
 ```
 
 ---
@@ -354,7 +354,7 @@ To automatically calculate the average of all items (including reversed items) a
 - Tick `Mean score` (a new column is created in your data)
 
 ```{r out.width='80%'}
-include_graphics("img/cronbach_save.png")
+include_img("cronbach_save.png")
 ```
 
 ---
@@ -364,7 +364,7 @@ include_graphics("img/cronbach_save.png")
 Rename the newly created column from the `Data` tab:
 
 ```{r out.width='60%'}
-include_graphics("img/cronbach_save_2.png")
+include_img("cronbach_save_2.png")
 ```
 
 `r faa("exclamation-triangle", animate="flash", speed="slow", color="red")` Warning: the calculation of the average includes the reversed items but the values of the reversed items themselves haven't been modified in the Data.
@@ -379,7 +379,7 @@ First, manually reverse all items that need to be reversed by either:
 - Data > Transform: edit
 
 ```{r}
-include_graphics("img/cronbach_6.png")
+include_img("cronbach_6.png")
 ```
 ]
 
@@ -390,7 +390,7 @@ include_graphics("img/cronbach_6.png")
 ```
 
 ```{r}
-include_graphics("img/cronbach_8.png")
+include_img("cronbach_8.png")
 ```
 ]
 
@@ -428,7 +428,7 @@ In an Academic Research Paper, once the latent variables are calculated, basic s
 Here is a screenshot from a published paper:
 
 ```{r out.width='100%'}
-include_graphics("img/paper_descriptive.png")
+include_img("paper_descriptive.png")
 ```
 
 ---
@@ -438,7 +438,7 @@ include_graphics("img/paper_descriptive.png")
 In the `Analyses` Tab, `Exploration` Icon, select Descriptives and choose your variables:
 
 ```{r out.width='80%'}
-include_graphics("img/jamovi_descr_table.png")
+include_img("jamovi_descr_table.png")
 ```
 
 ---
@@ -446,7 +446,7 @@ include_graphics("img/jamovi_descr_table.png")
 # Summary Figures in Jamovi
 
 ```{r out.width='100%'}
-include_graphics("img/jamovi_descr_figure_1.png")
+include_img("jamovi_descr_figure_1.png")
 ```
 
 ---
@@ -454,7 +454,7 @@ include_graphics("img/jamovi_descr_figure_1.png")
 # Summary Figures in Jamovi
 
 ```{r out.width='100%'}
-include_graphics("img/jamovi_descr_figure_2.png")
+include_img("jamovi_descr_figure_2.png")
 ```
 
 ---
@@ -464,7 +464,7 @@ include_graphics("img/jamovi_descr_figure_2.png")
 In the `Analyses` Tab, `Regression` Icon, select Correlation Matrix and choose your variables:
 
 ```{r out.width='100%'}
-include_graphics("img/jamovi_correlation_matrix.png")
+include_img("jamovi_correlation_matrix.png")
 ```
 
 ---
@@ -744,7 +744,7 @@ $$job\,satisfaction = b_0 + b_1\,salary + b2\,gender + b_3\,salary*gender + e$$
 # Solution
 
 ```{r}
-include_graphics("img/jamovi_regression_example.gif")
+include_img("jamovi_regression_example.gif")
 ```
 
 ---
@@ -752,7 +752,7 @@ include_graphics("img/jamovi_regression_example.gif")
 # Solution
 
 ```{r out.width='60%'}
-include_graphics("img/jamovi_regression_table.png")
+include_img("jamovi_regression_table.png")
 ```
 
 The predictions from model including $salary$, $gender$ and their interaction on $job\,satisfaction$ are not-significantly better than without these effects $(R^2 = 0.227$, $F(3,14) = 1.368$, $p = 293)$.
@@ -762,7 +762,7 @@ The predictions from model including $salary$, $gender$ and their interaction on
 # Solution
 
 ```{r out.width='60%'}
-include_graphics("img/jamovi_regression_table.png")
+include_img("jamovi_regression_table.png")
 ```
 
 The effect of $salary$ on $job\,satisfaction$ is not statistically significant, therefore $H_0$ cannot be rejected $(b = 0.000, 95\% CI [-0,000, 0.000]$, $t(14) = 0.659$, $p = 0.520)$.
@@ -845,16 +845,19 @@ DiagrammeR::grViz("
 Imagine that previous studies have suggested that higher grades predict higher happiness. This is the **Total Effect**.
 
 ```{r out.width="50%"}
-include_graphics("https://data.library.virginia.edu/files/mediation_ex1.png")
+# https://library.virginia.edu/data/articles/introduction-to-mediation-analysis
+include_graphics("https://library.virginia.edu/sites/default/files/inline-images/mediation_ex1_0.png")
 ```
 
 However, grades are not the real reason that happiness increases. Let's hypothesize that good grades boost one’s self-esteem and then high self-esteem boosts one’s happiness. This is the **Indirect Effect**.
 
 ```{r out.width="50%"}
-include_graphics("https://data.library.virginia.edu/files/mediation_ex2.png")
+include_graphics("https://library.virginia.edu/sites/default/files/inline-images/mediation_ex2.png")
 ```
 
-Self-esteem is a mediator that explains the underlying mechanism of the relationship between grades and happiness.
+Self-esteem is a mediator that explains the underlying mechanism of the relationship between grades (or $X$) and happiness (or $Y$).
+
+A mediation analysis is comprised of **three sets of regression**: $X$ → $Y$, $X$ → $M$, and $X$ + $M$ → $Y$. They are just three regression analyses!
 
 ---
 
@@ -935,7 +938,7 @@ include_graphics("https://jamovi-amm.github.io/glm/main.png")
 # Mediation with jAMM in JAMOVI
 
 ```{r}
-include_graphics("img/mediation_jamovi_jamm.gif")
+include_img("mediation_jamovi_jamm.gif")
 ```
 
 ---
