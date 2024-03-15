@@ -602,6 +602,7 @@ It indicates **how many units of the outcome variable increases/decreases/change
 # Analysis of the Estimate
 
 - If $b_1, ..., b_n = 0$, then:
+
   - The regression line is horizontal (no slope)
   - When the Predictor increases by 1 unit, the Outcome variable does not change
   - **The null hypothesis is not rejected**
@@ -609,6 +610,7 @@ It indicates **how many units of the outcome variable increases/decreases/change
 --
 
 - If $b_1, ..., b_n > 0$, then:
+
   - The regression line is positive (slope up)
   - When the Predictor increases by 1 unit, the Outcome variable increases by $b$
   - **The null hypothesis is rejected and the alternative hypothesis considered as plausible**
@@ -616,6 +618,7 @@ It indicates **how many units of the outcome variable increases/decreases/change
 --
 
 - If $b_1, ..., b_n < 0$, then:
+
   - The regression line is negative (slope down)
   - When the Predictor increases by 1 unit, the Outcome variable decreases by $b$
   - **The null hypothesis is rejected and the alternative hypothesis considered as plausible**
@@ -949,7 +952,7 @@ In this example, the following mediation hypothesis is tested:
 
 > The effect of **grades** on students' **happiness** is explained by their **self-esteem**
 
-```{r out.width='80%'}
+```{r out.width='70%'}
 include_graphics("https://jamovi-amm.github.io/examples/virginia_simple/results1.png")
 ```
 
